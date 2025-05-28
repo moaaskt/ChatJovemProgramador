@@ -1,7 +1,36 @@
+from flask import Flask, render_template, request, jsonify
+from flask_cors import CORS
 from utils.responder import Responder
 from utils.menu import Menu
 import json
 import os
+
+app = Flask(__name__)
+CORS(app)  # Habilita CORS para todas as rotas
+responder = Responder()
+
+# Suas rotas existentes permanecem aqui
+@app.route('/')
+def index():
+    return render_template('index.html')
+
+# Rota para o chatbot
+@app.route('/api/chat', methods=['POST'])
+def chat():
+    user_message = request.json.get('message', '')
+    bot_response = responder.buscar_resposta(user_message)
+    return jsonify({'response': bot_response})
+
+# Rota para obter dados
+@app.route('/api/data')
+def get_data():
+    with open('dados.json', 'r', encoding='utf-8') as f:
+        data = json.load(f)
+    return jsonify({
+        'sobre': data.get('sobre', ''),
+        'duvidas': data.get('duvidas', {}),
+        'cidades': data.get('cidades', '')
+    })
 
 def main():
     # Verifica se o JSON existe
@@ -45,7 +74,8 @@ def main():
                         print(responder.buscar_resposta("cidades participantes"))
                     
                     elif opcao == "4":
-                        print("Modo chat livre ativado. Digite sua pergunta ou /menu para voltar.")
+                        print(responder.alternar_modo_livre())
+                        print("Digite sua pergunta ou /menu para voltar.")
                         break
                     
                     elif opcao == "5":
@@ -68,5 +98,5 @@ def main():
         except Exception as e:
             print(f"🤖: Ocorreu um erro. Por favor, tente novamente. ({e})")
 
-if __name__ == "__main__":
-    main()
+if __name__ == '__main__':
+    app.run(debug=True)

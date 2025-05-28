@@ -1,14 +1,140 @@
 import json
 import re
+import os
 from difflib import get_close_matches
+import google.generativeai as genai
+from dotenv import load_dotenv
+import random
+load_dotenv() 
+
+class GeminiChat:
+    def __init__(self, api_key):
+        genai.configure(api_key=api_key)
+        self.model = genai.GenerativeModel('gemini-1.5-flash')
+        
+        with open('dados.json', 'r', encoding='utf-8') as f:
+            self.dados = json.load(f)
+        
+        self.contexto = self._criar_contexto()
+        self.chat = None
+        self.saudacoes = {
+            "oi": "Olá! 😊 Sou o assistente do Jovem Programador. Como posso te ajudar hoje?",
+            "bom dia": "Bom dia! 🌞 Que alegria te ver por aqui! Em que posso ajudar sobre o Jovem Programador?",
+            "boa tarde": "Boa tarde! ☀️ Estou aqui para tirar suas dúvidas sobre o programa!",
+            "boa noite": "Boa noite! 🌙 Pronto para falarmos sobre o Jovem Programador?"
+        }
+        
+    def _criar_contexto(self):
+        contexto = f"""
+        Você é um assistente simpático e prestativo do programa Jovem Programador.
+        Sua personalidade é:
+        - Amigável e acolhedora 😊
+        - Usa emojis moderadamente para ser mais expressivo
+        - Responde de forma clara e objetiva
+        - Mantém o tom profissional mas caloroso
+        
+        Use APENAS estas informações oficiais:
+        
+        SOBRE O PROGRAMA:
+        {self.dados.get("sobre", "Informações não disponíveis")}
+        
+        DÚVIDAS FREQUENTES:
+        {"".join([f"• {pergunta}: {resposta}\n" for pergunta, resposta in self.dados.get("duvidas", {}).items()])}
+        
+        CIDADES PARTICIPANTES:
+        {self.dados.get("cidades", "Lista não disponível")}
+        """
+        return contexto
+        
+    def iniciar_chat(self):
+        self.chat = self.model.start_chat(history=[])
+        self.chat.send_message(self.contexto)
+        return "Olá! 😊 Sou o assistente do Jovem Programador. Posso te ajudar com informações sobre o programa!"
+        
+    def enviar_mensagem(self, mensagem):
+        mensagem = mensagem.lower().strip()
+        
+        # Verifica saudações antes de processar
+        for saudacao, resposta in self.saudacoes.items():
+            if saudacao in mensagem:
+                return resposta + "\n\n" + self._mostrar_sugestoes()
+        
+        try:
+            if not self.chat:
+                self.iniciar_chat()
+                
+            prompt = f"""
+            Responda de forma amigável e profissional, usando APENAS os dados fornecidos.
+            
+            Pergunta: {mensagem}
+            
+            Diretrizes:
+            1. Seja simpático e prestativo 😊
+            2. Use 1-2 emojis relevantes quando apropriado
+            3. Se não souber a resposta, diga gentilmente
+            4. Mantenha as respostas claras e objetivas
+            5. Sempre relacione ao Jovem Programador
+            """
+            
+            response = self.chat.send_message(prompt)
+            return self._melhorar_resposta(response.text)
+            
+        except Exception as e:
+            return "Ops, tive um probleminha aqui... 😅 Podemos tentar de novo?"
+    
+    def _melhorar_resposta(self, resposta):
+        """Adiciona toque humano às respostas"""
+        melhorias = {
+            "não encontrei": "Não encontrei essa informação específica, mas posso te ajudar com outros detalhes sobre o programa! 😊",
+            "não sei": "Essa pergunta foi além do que sei no momento... Que tal perguntar sobre as inscrições ou cidades participantes? 😉"
+        }
+        
+        for termo, substituto in melhorias.items():
+            if termo in resposta.lower():
+                return substituto
+                
+        if not any(c.isupper() for c in resposta[:4]):  # Se não começar com maiúscula
+            resposta = resposta.capitalize()
+            
+        return resposta
+    
+    def _mostrar_sugestoes(self):
+        sugestoes = [
+            "Como faço para me inscrever?",
+            "Quais cidades participam do programa?",
+            "O curso é gratuito?",
+            "Quando começam as aulas?"
+        ]
+        return "Você pode me perguntar sobre:\n" + "\n".join([f"• {s}" for s in sugestoes])
+    
+    
+
 
 class Responder:
     def __init__(self):
         with open('dados.json', 'r', encoding='utf-8') as f:
             self.dados = json.load(f)
+        
+        # Configuração segura
+        api_key = os.getenv("GEMINI_API_KEY")
+        if not api_key:
+            raise ValueError("API Key do Gemini não encontrada. Configure a variável GEMINI_API_KEY")
+            
+        self.gemini_chat = GeminiChat(api_key)
+        self.modo_livre = False
+    
+    def alternar_modo_livre(self, ativar=True):
+        self.modo_livre = ativar
+        if ativar:
+            return self.gemini_chat.iniciar_chat()
+        return "Modo chat livre desativado. Voltando ao modo normal."
     
     def buscar_resposta(self, pergunta):
         pergunta = pergunta.lower().strip()
+        
+        # Verifica se está no modo livre e não é um comando
+        if self.modo_livre and not pergunta.startswith('/'):
+            return self.gemini_chat.enviar_mensagem(pergunta)
         
         # 1. Verificar saudações
         resposta_saudacao = self.processar_saudacao(pergunta)
@@ -36,6 +162,8 @@ class Responder:
             
         # 6. Fallback inteligente
         return self.fallback_inteligente(pergunta)
+
+
 
     def buscar_cidades(self):
         if "cidades" in self.dados:
@@ -77,7 +205,8 @@ class Responder:
         comandos = {
             '/sobre': self.formatar_sobre,
             '/cidades': self.formatar_cidades,
-            '/ajuda': self.mostrar_ajuda
+            '/ajuda': self.mostrar_ajuda,
+            '/livre': lambda: self.alternar_modo_livre(not self.modo_livre)
         }
         return comandos.get(comando, lambda: "Comando desconhecido. Digite /ajuda.")()
 
@@ -172,4 +301,5 @@ class Responder:
                 "/sobre - Informações sobre o programa\n"
                 "/cidades - Lista de cidades participantes\n"
                 "/menu - Mostrar menu principal\n"
-                "/sair - Encerrar o chat")
+                "/sair - Encerrar o chat\n"
+                "/livre - Alternar modo chat livre")
