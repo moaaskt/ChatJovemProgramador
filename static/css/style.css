@@ -94,3 +94,19 @@ body {
 .menu-btn.active {
     font-weight: bold;
 }
+.message-content[data-iscommand="true"] {
+    background-color: #e6f7ff !important;
+    border-left: 4px solid #1890ff;
+    padding-left: 11px;
+}
+.quick-commands {
+    padding: 8px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    border: 1px solid #dee2e6;
+}
+
+.quick-commands button {
+    font-family: 'Courier New', monospace;
+    font-size: 0.8rem;
+}

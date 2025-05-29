@@ -203,12 +203,24 @@ class Responder:
 
     def processar_comando(self, comando):
         comandos = {
-            '/sobre': self.formatar_sobre,
-            '/cidades': self.formatar_cidades,
-            '/ajuda': self.mostrar_ajuda,
-            '/livre': lambda: self.alternar_modo_livre(not self.modo_livre)
-        }
+        '/sobre': self.formatar_sobre,
+        '/cidades': self.formatar_cidades,
+        '/ajuda': self.mostrar_ajuda,
+        '/livre': lambda: self.alternar_modo_livre(not self.modo_livre),
+        '/menu': self.mostrar_menu_opcoes  # Novo handler para /menu
+    }
         return comandos.get(comando, lambda: "Comando desconhecido. Digite /ajuda.")()
+    
+    def mostrar_menu_opcoes(self):
+        return (
+        "📋 **MENU PRINCIPAL**\n\n"
+        "1. Sobre o programa\n"
+        "2. Dúvidas frequentes\n"
+        "3. Cidades participantes\n"
+        "4. Chat livre\n"
+        "5. Sair\n\n"
+        "Para navegar, clique nos botões do menu lateral ou digite o número da opção."
+    )
 
     def buscar_intencao(self, pergunta):
         intencoes = {

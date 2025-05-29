@@ -19,7 +19,10 @@ def index():
 def chat():
     user_message = request.json.get('message', '')
     bot_response = responder.buscar_resposta(user_message)
-    return jsonify({'response': bot_response})
+    return jsonify({
+        'response': bot_response,
+        'is_command': user_message.startswith('/')  # Pode ser útil para o frontend
+    })
 
 # Rota para obter dados
 @app.route('/api/data')
@@ -98,5 +101,12 @@ def main():
         except Exception as e:
             print(f"🤖: Ocorreu um erro. Por favor, tente novamente. ({e})")
 
+
+# if __name__ == "__main__":
+#         main()
+        
+        
 if __name__ == '__main__':
     app.run(debug=True)
+    
+    

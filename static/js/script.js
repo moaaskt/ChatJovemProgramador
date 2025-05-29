@@ -56,6 +56,12 @@ document.addEventListener('DOMContentLoaded', function() {
         userInput.value = '';
         
         try {
+            // Verifica se é um comando especial que requer ação local
+            if (message.toLowerCase() === '/menu') {
+                showMenuSection();
+                return;
+            }
+            
             const response = await fetch('/api/chat', {
                 method: 'POST',
                 headers: {
@@ -66,11 +72,26 @@ document.addEventListener('DOMContentLoaded', function() {
             
             const data = await response.json();
             addBotMessage(data.response);
+            
+            // Se a resposta contém instruções para mostrar o menu
+            if (data.response.includes('digite /menu') || data.response.includes('clique nos botões')) {
+                showMenuSection();
+            }
         } catch (error) {
             addBotMessage("Ops, tive um problema para responder. Tente novamente!");
             console.error('Error:', error);
         }
     }
+}
+
+function showMenuSection() {
+    // Simula o clique no botão do menu "Chat"
+    document.querySelector('.menu-btn[data-section="chat"]').click();
+    
+    // Mostra mensagem adicional se necessário
+    setTimeout(() => {
+        addBotMessage("Use os botões do menu lateral para navegar entre as seções!");
+    }, 300);
 }
 
 async function loadData() {
@@ -103,11 +124,47 @@ async function loadData() {
             `;
             accordion.appendChild(item);
         });
+          addQuickCommands();
     } catch (error) {
         console.error('Error loading data:', error);
     }
 }
     
+
+
+function addQuickCommands() {
+    // Remove comandos anteriores se existirem
+    const existingContainer = document.querySelector('.quick-commands');
+    if (existingContainer) {
+        existingContainer.remove();
+    }
+    
+    const commandButtons = [
+        { text: '/menu', desc: 'Mostrar menu' },
+        { text: '/ajuda', desc: 'Ajuda' },
+        { text: '/sobre', desc: 'Sobre o programa' },
+        { text: '/cidades', desc: 'Cidades participantes' }
+    ];
+    
+    const commandsContainer = document.createElement('div');
+    commandsContainer.className = 'quick-commands d-flex flex-wrap gap-2 my-2';
+    
+    commandButtons.forEach(cmd => {
+        const btn = document.createElement('button');
+        btn.className = 'btn btn-sm btn-outline-primary';
+        btn.innerHTML = `<i class="fas fa-slash me-1"></i>${cmd.text}`;
+        btn.title = cmd.desc;
+        btn.onclick = () => {
+            userInput.value = cmd.text;
+            sendMessage();
+        };
+        commandsContainer.appendChild(btn);
+    });
+    
+    // Insere após o input do usuário
+    const inputGroup = document.querySelector('.chat-input .input-group');
+    inputGroup.parentNode.insertBefore(commandsContainer, inputGroup.nextSibling);
+}
     // Quick questions
     quickQuestions.forEach(button => {
         button.addEventListener('click', function() {
@@ -124,19 +181,20 @@ async function loadData() {
     
     // Helper functions
     function addUserMessage(text) {
-        const now = new Date();
-        const timeString = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-        
-        const messageDiv = document.createElement('div');
-        messageDiv.className = 'message user';
-        messageDiv.innerHTML = `
-            <div class="message-content">${text}</div>
-            <div class="message-time">${timeString}</div>
-        `;
-        
-        chatMessages.appendChild(messageDiv);
-        scrollToBottom();
-    }
+    const now = new Date();
+    const timeString = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    const isCommand = text.startsWith('/');
+    
+    const messageDiv = document.createElement('div');
+    messageDiv.className = 'message user';
+    messageDiv.innerHTML = `
+        <div class="message-content" ${isCommand ? 'data-iscommand="true"' : ''}>${text}</div>
+        <div class="message-time">${timeString}</div>
+    `;
+    
+    chatMessages.appendChild(messageDiv);
+    scrollToBottom();
+}
     
     function addBotMessage(text) {
         const now = new Date();
@@ -159,6 +217,7 @@ async function loadData() {
     
     // Load data from backend (simulated)
     function loadData() {
+        
         // Simulate loading sobre
         setTimeout(() => {
             document.getElementById('sobre-content').textContent = "O JOVEM PROGRAMADOR é um PROGRAMA de capacitação tecnológica para formação de pessoas, a partir de 16 anos...";
