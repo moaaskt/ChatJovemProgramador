@@ -1,5 +1,6 @@
 # ChatJovemProgramador 💬👩‍💻
 
+![Status](https://img.shields.io/badge/status-em%20desenvolvimento-yellow)
 ![GitHub repo size](https://img.shields.io/github/repo-size/moaaskt/ChatJovemProgramador?style=flat-square)
 ![GitHub last commit](https://img.shields.io/github/last-commit/moaaskt/ChatJovemProgramador?style=flat-square)
 
