@@ -31,7 +31,7 @@ O **ChatJovemProgramador** é uma plataforma de chat voltada para iniciantes em 
 ## 🛠️ Tecnologias Utilizadas
 
 - **Frontend:** HTML, CSS, JavaScript (React.js em planejamento)  
-- **Backend:** Node.js (Express)  
+- **Backend:** Python (Flask)  
 - **Banco de Dados:** MongoDB (previsto)  
 
 
