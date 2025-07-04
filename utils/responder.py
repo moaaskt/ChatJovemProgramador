@@ -30,9 +30,6 @@ class GeminiChat:
         duvidas_texto = "".join(
         [f"• {pergunta}: {resposta}\n" for pergunta, resposta in self.dados.get("duvidas", {}).items()])
     
-        # --- CORREÇÃO AQUI ---
-        # A definição da variável 'contexto' e o 'return' estavam com a indentação errada.
-        # Eles precisam estar DENTRO da função _criar_contexto.
         contexto = f"""
         Você é um assistente simpático e prestativo do programa Jovem Programador.
         Sua personalidade é:
