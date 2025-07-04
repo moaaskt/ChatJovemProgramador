@@ -1,3 +1,5 @@
+# responder.py (CORRIGIDO)
+
 import json
 import re
 import os
@@ -25,6 +27,12 @@ class GeminiChat:
         }
         
     def _criar_contexto(self):
+        duvidas_texto = "".join(
+        [f"• {pergunta}: {resposta}\n" for pergunta, resposta in self.dados.get("duvidas", {}).items()])
+    
+        # --- CORREÇÃO AQUI ---
+        # A definição da variável 'contexto' e o 'return' estavam com a indentação errada.
+        # Eles precisam estar DENTRO da função _criar_contexto.
         contexto = f"""
         Você é um assistente simpático e prestativo do programa Jovem Programador.
         Sua personalidade é:
@@ -32,19 +40,20 @@ class GeminiChat:
         - Usa emojis moderadamente para ser mais expressivo
         - Responde de forma clara e objetiva
         - Mantém o tom profissional mas caloroso
-        
+
         Use APENAS estas informações oficiais:
-        
+
         SOBRE O PROGRAMA:
         {self.dados.get("sobre", "Informações não disponíveis")}
-        
+
         DÚVIDAS FREQUENTES:
-        {"".join([f"• {pergunta}: {resposta}\n" for pergunta, resposta in self.dados.get("duvidas", {}).items()])}
-        
+        {duvidas_texto}
+
         CIDADES PARTICIPANTES:
         {self.dados.get("cidades", "Lista não disponível")}
         """
         return contexto
+
         
     def iniciar_chat(self):
         self.chat = self.model.start_chat(history=[])
@@ -108,7 +117,6 @@ class GeminiChat:
         return "Você pode me perguntar sobre:\n" + "\n".join([f"• {s}" for s in sugestoes])
     
     
-
 
 class Responder:
     def __init__(self):

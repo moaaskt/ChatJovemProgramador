@@ -102,11 +102,11 @@ def main():
             print(f"🤖: Ocorreu um erro. Por favor, tente novamente. ({e})")
 
 
-# if __name__ == "__main__":
-#         main()
+if __name__ == "__main__":
+        main()
         
         
-if __name__ == '__main__':
-    app.run(debug=True)
+# if __name__ == '__main__':
+#     app.run(debug=True)
     
     
