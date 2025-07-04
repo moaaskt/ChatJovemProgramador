@@ -1,112 +1,80 @@
+# app.py (Versão Final com Modo Terminal e Web)
+
 from flask import Flask, render_template, request, jsonify
 from flask_cors import CORS
-from utils.responder import Responder
-from utils.menu import Menu
-import json
-import os
+from utils.responder import Chatbot  # Importamos nossa nova classe simplificada
 
+# --- Configuração do Servidor Web (Flask) ---
 app = Flask(__name__)
-CORS(app)  # Habilita CORS para todas as rotas
-responder = Responder()
+CORS(app)
 
-# Suas rotas existentes permanecem aqui
+# Tenta inicializar o chatbot uma única vez.
+# Esta instância será usada pela aplicação web.
+try:
+    chatbot_web = Chatbot()
+except Exception as e:
+    print(f"CRÍTICO: Não foi possível inicializar o chatbot para a web. Erro: {e}")
+    chatbot_web = None
+
+# Rota para a página principal
 @app.route('/')
 def index():
     return render_template('index.html')
 
-# Rota para o chatbot
+# Rota para a API do chat
 @app.route('/api/chat', methods=['POST'])
 def chat():
+    if not chatbot_web:
+        return jsonify({'response': "Desculpe, o chatbot está temporariamente fora de serviço."}), 500
+
     user_message = request.json.get('message', '')
-    bot_response = responder.buscar_resposta(user_message)
-    return jsonify({
-        'response': bot_response,
-        'is_command': user_message.startswith('/')  # Pode ser útil para o frontend
-    })
+    bot_response = chatbot_web.gerar_resposta(user_message)
+    return jsonify({'response': bot_response})
 
-# Rota para obter dados
-@app.route('/api/data')
-def get_data():
-    with open('dados.json', 'r', encoding='utf-8') as f:
-        data = json.load(f)
-    return jsonify({
-        'sobre': data.get('sobre', ''),
-        'duvidas': data.get('duvidas', {}),
-        'cidades': data.get('cidades', '')
-    })
+# --- Função para Teste no Terminal ---
 
-def main():
-    # Verifica se o JSON existe
-    if not os.path.exists('dados.json'):
-        print("❌ Erro: Arquivo 'dados.json' não encontrado. Execute scraper.py primeiro!")
-        return
-
-    responder = Responder()
+def main_terminal():
+    """Função para rodar uma sessão de chat interativa no terminal."""
+    print("\n--- MODO DE TESTE NO TERMINAL ---")
+    print("O chatbot será inicializado exclusivamente para esta sessão de teste.")
     
     try:
-        with open('dados.json', 'r', encoding='utf-8') as f:
-            dados = json.load(f)
+        # Cria uma instância separada do chatbot para o terminal
+        chatbot_terminal = Chatbot()
     except Exception as e:
-        print(f"❌ Erro ao ler dados: {e}")
-        return
+        print(f"CRÍTICO: Falha ao iniciar o chatbot para o terminal. Erro: {e}")
+        return # Encerra se não conseguir iniciar
 
-    print("🤖 Bem-vindo ao Chatbot do Jovem Programador!")
-    print("Digite uma mensagem como 'Oi' ou 'Bom dia' para começar, /menu para opções ou faça uma pergunta livre.")
+    print("\n✅ Chatbot de teste pronto. Digite sua mensagem ou '/sair' para encerrar.")
 
     while True:
         try:
-            entrada = input("\nVocê: ").strip()
-            
-            if not entrada:
-                print("🤖: Por favor, digite sua pergunta ou /menu para opções.")
-                continue
-                
-            if entrada.lower() == "/menu":
-                while True:
-                    opcao = Menu.mostrar()
-                    
-                    if opcao == "1":
-                        print("\n📌 SOBRE O PROGRAMA:")
-                        print(responder.buscar_resposta("sobre o programa"))
-                    
-                    elif opcao == "2":
-                        Menu.exibir_duvidas(dados)
-                    
-                    elif opcao == "3":
-                        print("\n📍 CIDADES PARTICIPANTES:")
-                        print(responder.buscar_resposta("cidades participantes"))
-                    
-                    elif opcao == "4":
-                        print(responder.alternar_modo_livre())
-                        print("Digite sua pergunta ou /menu para voltar.")
-                        break
-                    
-                    elif opcao == "5":
-                        print("Até logo! 👋")
-                        return
-                    
-                    else:
-                        print("Opção inválida. Tente novamente.")
-            
-            elif entrada.lower() == "/sair":
-                print("Até logo! 👋")
+            user_message = input("\nVocê: ").strip()
+
+            # Comando para sair do loop de teste
+            if user_message.lower() in ['/sair', 'exit', 'quit']:
+                print("🤖 Encerrando sessão de teste. Até logo!")
                 break
             
-            else:
-                print("🤖:", responder.buscar_resposta(entrada))
-                
-        except KeyboardInterrupt:
-            print("\nAté logo! 👋")
+            if not user_message:
+                continue
+
+            # Gera e imprime a resposta do bot
+            bot_response = chatbot_terminal.gerar_resposta(user_message)
+            print(f"🤖 Bot: {bot_response}")
+
+        except KeyboardInterrupt: # Permite sair com Ctrl+C
+            print("\n🤖 Encerrando sessão de teste. Até logo!")
             break
         except Exception as e:
-            print(f"🤖: Ocorreu um erro. Por favor, tente novamente. ({e})")
+            print(f"🤖 Ocorreu um erro inesperado: {e}")
 
 
-if __name__ == "__main__":
-        main()
-        
-        
-# if __name__ == '__main__':
-#     app.run(debug=True)
+# --- Ponto de Entrada do Script ---
+
+if __name__ == '__main__':
+    # Para rodar o chat de TESTE no TERMINAL, deixe esta linha descomentada:
+    # main_terminal()
     
-    
+    # Para rodar o SERVIDOR WEB, comente a linha acima e descomente a linha abaixo:
+    app.run(debug=True, port=5000)

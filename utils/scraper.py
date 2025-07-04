@@ -80,17 +80,52 @@ def raspar_cidades():
     except Exception as e:
         print(f"Erro ao raspar cidades: {e}")
         return {"cidades": "Erro ao carregar lista de cidades."}
+    
+def raspar_noticias():
+    """Raspa as 3 notícias mais recentes da página de notícias."""
+    print("📰 Raspando notícias...")
+    try:
+        url = "https://www.jovemprogramador.com.br/noticias.php"
+        response = requests.get(url)
+        soup = BeautifulSoup(response.text, 'html.parser')
+        
+        noticias = []
+        # Encontra todos os contêineres de notícias
+        cards_noticias = soup.find_all('div', class_='fh5co-blog', limit=3) # Pega os 3 primeiros
+        
+        if not cards_noticias:
+            return {"noticias": "Nenhuma notícia encontrada."}
+            
+        for card in cards_noticias:
+            titulo_tag = card.find('h3')
+            link_tag = card.find('a')
+            
+            if titulo_tag and link_tag:
+                titulo = titulo_tag.get_text(strip=True)
+                link = "https://www.jovemprogramador.com.br/" + link_tag['href']
+                noticias.append({"titulo": titulo, "link": link})
+                
+        return {"noticias": noticias}
+        
+    except Exception as e:
+        print(f"❌ Erro ao raspar 'notícias': {e}")
+        return {"noticias": "Erro ao carregar notícias."}    
+    
+    
+    
 
 def salvar_dados():
+    print("🚀 Iniciando raspagem completa do site...")
     dados = {
         "sobre": raspar_sobre()["sobre"],
         "duvidas": raspar_duvidas()["duvidas"],
-        "cidades": raspar_cidades()["cidades"]
+        "cidades": raspar_cidades()["cidades"],
+        "noticias": raspar_noticias()["noticias"]  # <-- NOVA LINHA
     }
     
     with open('dados.json', 'w', encoding='utf-8') as f:
         json.dump(dados, f, ensure_ascii=False, indent=2)
-    print("✅ Dados salvos em 'dados.json'")
+    print("✅ Dados atualizados e salvos com sucesso em 'dados.json'")
 
 if __name__ == "__main__":
     salvar_dados()
