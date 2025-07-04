@@ -15,5 +15,543 @@
     "Quantas horas têm o programa?": "Módulo I - 08 horas - Conceitos Lógica - Duas aulas de 4 horas de duração",
     "Como faço para conseguir uma vaga?": "É preciso atender todos os pré-requisitos*."
   },
-  "cidades": "Araranguá, Blumenau, Biguaçu, Brusque, Caçador, Canoinhas, Chapecó, Concórdia, Criciúma, Curitibanos, Florianópolis, Fraiburgo, Jaraguá do Sul, Joaçaba, Joinville, Lages, Palhoça, Rio do Sul, São Miguel do Oeste, Tubarão, Videira e Xanxerê."
+  "cidades": "Araranguá, Blumenau, Biguaçu, Brusque, Caçador, Canoinhas, Chapecó, Concórdia, Criciúma, Curitibanos, Florianópolis, Fraiburgo, Jaraguá do Sul, Joaçaba, Joinville, Lages, Palhoça, Rio do Sul, São Miguel do Oeste, Tubarão, Videira e Xanxerê.",
+  "noticias": [
+    {
+      "titulo": "Aula Magna Jovem Programador 2025: inspiração, IA e futuro digital em destaque",
+      "link": "https://www.jovemprogramador.com.br/n.php?ID=134&T=aula-magna-jovem-programador-2025-inspira-o-ia-e-futuro-digital-em-destaque",
+      "resumo": "A 5ª edição do Programa Jovem Programador começou com um evento inspirador, conectando tecnologia, educação e oportunidades para os futuros desenvolve"
+    },
+    {
+      "titulo": "Jovens no centro da transformação: Aula Magna marca início da 5ª edição do Jovem Programador",
+      "link": "https://www.jovemprogramador.com.br/n.php?ID=133&T=jovens-no-centro-da-transforma-o-aula-magna-marca-in-cio-da-5o-edi-o-do-jovem-programador",
+      "resumo": "Com mais de 900 pessoas, on-line e presencial, o evento deu início à maior edição do programa, reforçando o futuro da tecnologia catarinense."
+    },
+    {
+      "titulo": "Nova identidade visual marca o início da maior edição do Programa Jovem Programador",
+      "link": "https://www.jovemprogramador.com.br/n.php?ID=132&T=nova-identidade-visual-marca-o-in-cio-da-maior-edi-o-do-programa-jovem-programador",
+      "resumo": "Programa Jovem Programador inicia sua 5ª edição com uma nova marca representando inovação, amadurecimento e transformação social através da tecnologia"
+    },
+    {
+      "titulo": "Grupo Softplan e Jovem Programador: tecnologia com impacto social",
+      "link": "https://www.jovemprogramador.com.br/n.php?ID=131&T=grupo-softplan-e-jovem-programador-tecnologia-com-impacto-social",
+      "resumo": "Conheça mais sobre nosso novo patrocinador"
+    },
+    {
+      "titulo": "ADM Sistemas é a nova patrocinadora do Programa Jovem Programador",
+      "link": "https://www.jovemprogramador.com.br/n.php?ID=128&T=adm-sistemas-a-nova-patrocinadora-do-programa-jovem-programador",
+      "resumo": "Conheça mais sobre nosso novo patrocinador"
+    },
+    {
+      "titulo": "Jovem Programador dá início à 5ª edição com evento inédito, palestra da IBM e homenagens",
+      "link": "https://www.jovemprogramador.com.br/n.php?ID=123&T=jovem-programador-d-in-cio-5o-edi-o-com-evento-in-dito-palestra-da-ibm-e-homenagens",
+      "resumo": "Evento em Blumenau marca o lançamento da nova identidade visual do programa e reúne empresários, alunos e autoridades."
+    },
+    {
+      "titulo": "Jovem Programador 2025 encerra inscrições com recorde de participantes e amplia atuação em SC",
+      "link": "https://www.jovemprogramador.com.br/n.php?ID=122&T=jovem-programador-2025-encerra-inscri-es-com-recorde-de-participantes-e-amplia-atua-o-em-sc",
+      "resumo": "Um marco histórico: 4.574 inscritos em 22 cidades de Santa Catari"
+    },
+    {
+      "titulo": "Mobuss é a nova patrocinadora do Jovem Programador",
+      "link": "https://www.jovemprogramador.com.br/n.php?ID=121&T=mobuss-a-nova-patrocinadora-do-jovem-programador",
+      "resumo": "Conheça mais sobre nosso novo patrocinador"
+    },
+    {
+      "titulo": "Teclógica é a nova patrocinadora do Jovem Programador",
+      "link": "https://www.jovemprogramador.com.br/n.php?ID=120&T=tecl-gica-a-nova-patrocinadora-do-jovem-programador",
+      "resumo": "Conheça mais sobre nosso novo patrocinador"
+    },
+    {
+      "titulo": "CB Sistemas é a nova patrocinadora do Jovem Programador",
+      "link": "https://www.jovemprogramador.com.br/n.php?ID=115&T=cb-sistemas-a-nova-patrocinadora-do-jovem-programador",
+      "resumo": "Conheça o novo patrocinador do PJP"
+    },
+    {
+      "titulo": "DataRunk é a nova patrocinadora do Jovem Programador",
+      "link": "https://www.jovemprogramador.com.br/n.php?ID=114&T=datarunk-a-nova-patrocinadora-do-jovem-programador",
+      "resumo": "Conheça mais sobre a DataRunk"
+    },
+    {
+      "titulo": "Koerich Lab é o novo patrocinador do Jovem Programador",
+      "link": "https://www.jovemprogramador.com.br/n.php?ID=119&T=koerich-lab-o-novo-patrocinador-do-jovem-programador",
+      "resumo": "Conheça mais sobre o patrocinador"
+    },
+    {
+      "titulo": "DG SYS é a nova patrocinadora do Jovem Programador",
+      "link": "https://www.jovemprogramador.com.br/n.php?ID=118&T=dg-sys-a-nova-patrocinadora-do-jovem-programador",
+      "resumo": "Conheça mais sobre nosso novo patrocinador"
+    },
+    {
+      "titulo": "Inscrições Abertas para o Jovem Programador 2025",
+      "link": "https://www.jovemprogramador.com.br/n.php?ID=113&T=inscri-es-abertas-para-o-jovem-programador-2025",
+      "resumo": "INSCRIÇÕES ABERTAS: Transforme o Futuro com o Jovem Programador"
+    },
+    {
+      "titulo": "Radek Systems é a nova patrocinadora do Jovem Programador",
+      "link": "https://www.jovemprogramador.com.br/n.php?ID=117&T=radek-systems-a-nova-patrocinadora-do-jovem-programador",
+      "resumo": "Conheça mais sobre nosso novo patrocinador"
+    },
+    {
+      "titulo": "Onda Segura é a nova patrocinadora do Jovem Programador",
+      "link": "https://www.jovemprogramador.com.br/n.php?ID=112&T=onda-segura-a-nova-patrocinadora-do-jovem-programador",
+      "resumo": "Conheça mais sobre nosso novo patrocinador"
+    },
+    {
+      "titulo": "Dev10 é a nova patrocinadora do Jovem Programador",
+      "link": "https://www.jovemprogramador.com.br/n.php?ID=116&T=dev10-a-nova-patrocinadora-do-jovem-programador",
+      "resumo": "Conheça o novo patrocinador do PJP"
+    },
+    {
+      "titulo": "WK é a nova patrocinadora do Jovem Programador",
+      "link": "https://www.jovemprogramador.com.br/n.php?ID=106&T=wk-a-nova-patrocinadora-do-jovem-programador",
+      "resumo": "Para o Jovem Programador, contar com o apoio e a confiança de uma empresa como a WK é motivo de orgulho"
+    },
+    {
+      "titulo": "ap.controle é a nova patrocinadora do Jovem Programador",
+      "link": "https://www.jovemprogramador.com.br/n.php?ID=105&T=ap-controle-a-nova-patrocinadora-do-jovem-programador",
+      "resumo": "Juntos, vamos capacitar a nova geração de programadores e contribuir para um futuro melhor!"
+    },
+    {
+      "titulo": "CloudPark é a nova patrocinadora do Jovem Programador",
+      "link": "https://www.jovemprogramador.com.br/n.php?ID=104&T=cloudpark-a-nova-patrocinadora-do-jovem-programador",
+      "resumo": "A CloudPark é uma empresa inovadora que nasceu do desejo de três empreendedores de revolucionar e simplificar a operação de estacionamentos. Conheça!"
+    },
+    {
+      "titulo": "Clubes Associados by Limber é a nova patrocinadora do Jovem Programador",
+      "link": "https://www.jovemprogramador.com.br/n.php?ID=103&T=clubes-associados-by-limber-a-nova-patrocinadora-do-jovem-programador",
+      "resumo": "Conheça mais sobre a Clubes Associados"
+    },
+    {
+      "titulo": "Talk com Patrocinador - Infoel",
+      "link": "https://www.jovemprogramador.com.br/n.php?ID=102&T=talk-com-patrocinador-infoel",
+      "resumo": "O Mercado Digital e as Novas Gerações: Reflexões e Desafios"
+    },
+    {
+      "titulo": "Talk com Patrocinadores | Como a HartSystem Está Moldando o Futuro dos Jovens Programadores: Insights e Dicas Valiosas",
+      "link": "https://www.jovemprogramador.com.br/n.php?ID=101&T=talk-com-patrocinadores-como-a-hartsystem-est-moldando-o-futuro-dos-jovens-programadores-insights-e-dicas-valiosas",
+      "resumo": "Descubra como a HartSystem está moldando jovens programadores com dicas de segurança da informação, inteligência artificial e conceitos de programação"
+    },
+    {
+      "titulo": "A Importância da Diversidade no Mercado de TI:",
+      "link": "https://www.jovemprogramador.com.br/n.php?ID=100&T=a-import-ncia-da-diversidade-no-mercado-de-ti",
+      "resumo": "Último Workshop Jovem Programador em 2024"
+    },
+    {
+      "titulo": "Talk com Patrocinador - DataInfo - Segurança Cibernética",
+      "link": "https://www.jovemprogramador.com.br/n.php?ID=99&T=talk-com-patrocinador-datainfo-seguran-a-cibern-tica",
+      "resumo": "Preparados para mais uma edição imperdível das nossas Talks? Em 09 de julho de 2024, teremos a honra de receber a DataInfo para uma discussão profunda e relevante sobre Segurança Cibernética."
+    },
+    {
+      "titulo": "Jovem Programador Promove Workshop LinkedIn",
+      "link": "https://www.jovemprogramador.com.br/n.php?ID=98&T=jovem-programador-promove-workshop-linkedin",
+      "resumo": "Vem aí o Workshop LinkedIn, exclusivo para alunos do Jovem Programador 2024!"
+    },
+    {
+      "titulo": "Jovem Programador promove workshop de ética",
+      "link": "https://www.jovemprogramador.com.br/n.php?ID=97&T=jovem-programador-promove-workshop-de-tica",
+      "resumo": "Evento é destinado a alunos do curso de formação em tecnologia e contará com a presença de profissionais da área jurídica"
+    },
+    {
+      "titulo": "Infoel Sistemas é a nova patrocinadora do Jovem Programador",
+      "link": "https://www.jovemprogramador.com.br/n.php?ID=95&T=infoel-sistemas-a-nova-patrocinadora-do-jovem-programador",
+      "resumo": "Empresa que atua no mercado há 25 anos acaba de se juntar ao programa de formação em tecnologia"
+    },
+    {
+      "titulo": "Jovem Programador realiza aula magna exclusiva  para alunos do programa",
+      "link": "https://www.jovemprogramador.com.br/n.php?ID=94&T=jovem-programador-realiza-aula-magna-exclusiva-para-alunos-do-programa",
+      "resumo": "No dia 03/04, os estudantes que fazem parte do programa terão um “aulão” especial com as ações previstas e insights valiosos"
+    },
+    {
+      "titulo": "Jovem Programador 2024: edição começa as aulas batendo recorde de vagas e inscrições",
+      "link": "https://www.jovemprogramador.com.br/n.php?ID=93&T=jovem-programador-2024-edi-o-come-a-as-aulas-batendo-recorde-de-vagas-e-inscri-es",
+      "resumo": "Com o aumento no número de vagas e cidades atendidas, o programa se consolida como o maior do Estado em capacitação profissional de programadores de s"
+    },
+    {
+      "titulo": "Matrículas abertas para os aprovados no Programa Jovem Programador 2024",
+      "link": "https://www.jovemprogramador.com.br/n.php?ID=92&T=matr-culas-abertas-para-os-aprovados-no-programa-jovem-programador-2024",
+      "resumo": "Para os aprovados no workshop do Jovem Programador, as matrículas começam hoje: veja mais informações"
+    },
+    {
+      "titulo": "Workshop Jovem Programador 2024: saiba como vai funcionar",
+      "link": "https://www.jovemprogramador.com.br/n.php?ID=91&T=workshop-jovem-programador-2024-saiba-como-vai-funcionar",
+      "resumo": "O evento online será ministrado por profissionais experientes e terá atividades avaliativas; participação é obrigatória para os interessados no curso"
+    },
+    {
+      "titulo": "Últimos dias: inscrições para o Jovem Programador 2024 terminam dia 18/02",
+      "link": "https://www.jovemprogramador.com.br/n.php?ID=90&T=-ltimos-dias-inscri-es-para-o-jovem-programador-2024-terminam-dia-18-02",
+      "resumo": "Última chance: se você busca uma oportunidade na área de TI, inscreva-se e participe!"
+    },
+    {
+      "titulo": "Jovem Programador 2024: programa ultrapassa 1000 vagas em 21 cidades catarinenses",
+      "link": "https://www.jovemprogramador.com.br/n.php?ID=89&T=jovem-programador-2024-programa-ultrapassa-1000-vagas-em-21-cidades-catarinenses",
+      "resumo": "Com o aumento no número de oportunidades e de municípios de norte a sul do Estado, o Jovem Programador se torna o maior programa de formação em TI de"
+    },
+    {
+      "titulo": "Jovem Programador 2024: confira o cronograma completo com todas as datas",
+      "link": "https://www.jovemprogramador.com.br/n.php?ID=88&T=jovem-programador-2024-confira-o-cronograma-completo-com-todas-as-datas",
+      "resumo": "Quem fez inscrição para o programa deste ano deve ficar atento às próximas atividades obrigatórias"
+    },
+    {
+      "titulo": "Systêxtil é a nova patrocinadora do Jovem Programador",
+      "link": "https://www.jovemprogramador.com.br/n.php?ID=87&T=syst-xtil-a-nova-patrocinadora-do-jovem-programador",
+      "resumo": "Com mais de 30 anos de mercado, a Systêxtil acaba de se juntar ao Jovem Programador como a mais nova patrocinadora do programa"
+    },
+    {
+      "titulo": "Jovem Programador 2023: final do Hackathon premiou alunos do programa",
+      "link": "https://www.jovemprogramador.com.br/n.php?ID=85&T=jovem-programador-2023-final-do-hackathon-premiou-alunos-do-programa",
+      "resumo": "Orientadas por profissionais atuantes, equipes desenvolveram soluções aplicáveis e ganharam smartwatchs, Alexas e kits gamer; inscrições para o Jovem"
+    },
+    {
+      "titulo": "Inscrições abertas para o Programa Jovem Programador 2024",
+      "link": "https://www.jovemprogramador.com.br/n.php?ID=84&T=inscri-es-abertas-para-o-programa-jovem-programador-2024",
+      "resumo": "Jovem Programador abre inscrições para 2024, oferecendo mais de 830 vagas em 19 cidades catarinenses; veja como participar!"
+    },
+    {
+      "titulo": "Programação do Hackathon 2023 do Jovem Programador",
+      "link": "https://www.jovemprogramador.com.br/n.php?ID=83&T=programa-o-do-hackathon-2023-do-jovem-programador",
+      "resumo": "Confira o cronograma de atividades e das palestras da maratona de inovação do Jovem Programador"
+    },
+    {
+      "titulo": "Inscrições abertas para o Hackathon do Programa Jovem Programador",
+      "link": "https://www.jovemprogramador.com.br/n.php?ID=80&T=inscri-es-abertas-para-o-hackathon-do-programa-jovem-programador",
+      "resumo": "As inscrições acontecem de 16 a 30 de novembro, participe!"
+    },
+    {
+      "titulo": "Como alavancar sua carreira na área de Tecnologia da Informação",
+      "link": "https://www.jovemprogramador.com.br/n.php?ID=79&T=como-alavancar-sua-carreira-na-rea-de-tecnologia-da-informa-o",
+      "resumo": "Confira dicas valiosas para te ajudar a trilhar uma carreira de sucesso na área de TI"
+    },
+    {
+      "titulo": "Moldando o Futuro da Tecnologia: Por que sua empresa deve patrocinar o Programa Jovem Programador?",
+      "link": "https://www.jovemprogramador.com.br/n.php?ID=78&T=moldando-o-futuro-da-tecnologia-por-que-sua-empresa-deve-patrocinar-o-programa-jovem-programador",
+      "resumo": "Saiba por que cada vez mais empresas estão patrocinando o Jovem Programador e veja as vantagens de investir em um programa de formação como o nosso"
+    },
+    {
+      "titulo": "Exímio é a nova patrocinadora do Jovem Programador",
+      "link": "https://www.jovemprogramador.com.br/n.php?ID=77&T=ex-mio-a-nova-patrocinadora-do-jovem-programador",
+      "resumo": "Ao se juntar ao time de patrocinadores do programa, a empresa de Brusque colabora com o crescimento do mercado catarinense de tecnologia"
+    },
+    {
+      "titulo": "Inscrições para 7ª Maratona CiberEducação Cisco estão abertas",
+      "link": "https://www.jovemprogramador.com.br/n.php?ID=76&T=inscri-es-para-7o-maratona-cibereduca-o-cisco-est-o-abertas",
+      "resumo": "A maratona tem duração de 30 horas e ocorre entre os dias 11 de setembro e 1º de outubro"
+    },
+    {
+      "titulo": "Conheça a SOMAR, nova apoiadora do Jovem Programador",
+      "link": "https://www.jovemprogramador.com.br/n.php?ID=75&T=conhe-a-a-somar-nova-apoiadora-do-jovem-programador",
+      "resumo": "A Sociedade Maçônica Regional (SOMAR) acaba de se juntar ao Jovem Programador para incentivar o fortalecimento do mercado de tecnologia em SC"
+    },
+    {
+      "titulo": "Programação na prática é tema da primeira edição de 2023 do Talk PJP",
+      "link": "https://www.jovemprogramador.com.br/n.php?ID=74&T=programa-o-na-pr-tica-tema-da-primeira-edi-o-de-2023-do-talk-pjp",
+      "resumo": "Descubra os bastidores da vida de um programador no Talk PJP"
+    },
+    {
+      "titulo": "Estágio: por onde começar e como se preparar para essa experiência profissional",
+      "link": "https://www.jovemprogramador.com.br/n.php?ID=73&T=est-gio-por-onde-come-ar-e-como-se-preparar-para-essa-experi-ncia-profissional",
+      "resumo": "Em busca de uma colocação? Confira dicas de como se preparar para conseguir um estágio e o que fazer para se dar bem na hora da entrevista"
+    },
+    {
+      "titulo": "Dia do Estudante: inspiração e conhecimento para o futuro",
+      "link": "https://www.jovemprogramador.com.br/n.php?ID=72&T=dia-do-estudante-inspira-o-e-conhecimento-para-o-futuro",
+      "resumo": "Por Lariana Luy Peixoto*"
+    },
+    {
+      "titulo": "AmurelTec é o novo apoiador do Jovem Programador",
+      "link": "https://www.jovemprogramador.com.br/n.php?ID=71&T=amureltec-o-novo-apoiador-do-jovem-programador",
+      "resumo": "Núcleo vinculado à ACIT realiza ações em prol do mercado catarinense de tecnologia por meio de eventos e parcerias estratégicas"
+    },
+    {
+      "titulo": "A importância do LinkedIn para a carreira profissional",
+      "link": "https://www.jovemprogramador.com.br/n.php?ID=70&T=a-import-ncia-do-linkedin-para-a-carreira-profissional",
+      "resumo": "Jovem Programador vai promover workshop gratuito para orientar alunos do programa quanto à melhores práticas de utilização da ferramenta"
+    },
+    {
+      "titulo": "O Mercado de TI em Santa Catarina: oportunidades para uma carreira em tecnologia",
+      "link": "https://www.jovemprogramador.com.br/n.php?ID=69&T=o-mercado-de-ti-em-santa-catarina-oportunidades-para-uma-carreira-em-tecnologia",
+      "resumo": "Setor deve ultrapassar a marca de 100 mil postos de trabalhos ativos até o final de 2025"
+    },
+    {
+      "titulo": "A inteligência artificial vai acabar com o trabalho do programador?",
+      "link": "https://www.jovemprogramador.com.br/n.php?ID=68&T=a-intelig-ncia-artificial-vai-acabar-com-o-trabalho-do-programador",
+      "resumo": "Estudos afirmam que algumas profissões serão extintas, mas outras poderão se beneficiar da IA"
+    },
+    {
+      "titulo": "Inscrições para Maratona Python – Cisco estão abertas",
+      "link": "https://www.jovemprogramador.com.br/n.php?ID=67&T=inscri-es-para-maratona-python-cisco-est-o-abertas",
+      "resumo": "Jornada 100% on-line, gratuita e autodidata será realizada entre os dias 24 de abril e 19 de maio"
+    },
+    {
+      "titulo": "Networking em TI: por que e como se conectar com outros profissionais?",
+      "link": "https://www.jovemprogramador.com.br/n.php?ID=66&T=networking-em-ti-por-que-e-como-se-conectar-com-outros-profissionais",
+      "resumo": "Construir uma rede de contatos é uma ação estratégica que pode proporcionar benefícios para a carreira"
+    },
+    {
+      "titulo": "Falta de profissionais de TI é um desafio para o crescimento do setor em SC",
+      "link": "https://www.jovemprogramador.com.br/n.php?ID=65&T=falta-de-profissionais-de-ti-um-desafio-para-o-crescimento-do-setor-em-sc",
+      "resumo": "Investir em formação e capacitação é uma das soluções para enfrentar o problema"
+    },
+    {
+      "titulo": "HartSystem Sistemas é a mais nova patrocinadora do Jovem Programador",
+      "link": "https://www.jovemprogramador.com.br/n.php?ID=64&T=hartsystem-sistemas-a-mais-nova-patrocinadora-do-jovem-programador",
+      "resumo": "A empresa é referência no mercado da área de gestão odontológica"
+    },
+    {
+      "titulo": "Jovem Programador 2023 teve recorde de inscrições",
+      "link": "https://www.jovemprogramador.com.br/n.php?ID=63&T=jovem-programador-2023-teve-recorde-de-inscri-es",
+      "resumo": "Agora, os inscritos aguardam o resultado do workshop inicial para ocupar as mais de 600 vagas espalhadas pelo Estado de Santa Catarina"
+    },
+    {
+      "titulo": "Workshop do Jovem Programador: saiba como vai funcionar",
+      "link": "https://www.jovemprogramador.com.br/n.php?ID=62&T=workshop-do-jovem-programador-saiba-como-vai-funcionar",
+      "resumo": "Evento online será realizado entre os dias 2 e 4 de março e a participação é obrigatória para todos que querem participar do programa"
+    },
+    {
+      "titulo": "Jovem Programador 2023: inscrições prorrogadas",
+      "link": "https://www.jovemprogramador.com.br/n.php?ID=61&T=jovem-programador-2023-inscri-es-prorrogadas",
+      "resumo": "Interessados têm até o fim do mês para se inscrever gratuitamente; aulas começam em março"
+    },
+    {
+      "titulo": "Jovem Programador 2023 começa em março",
+      "link": "https://www.jovemprogramador.com.br/n.php?ID=60&T=jovem-programador-2023-come-a-em-mar-o",
+      "resumo": "Neste ano, o programa vai oferecer mais de 600 vagas distribuídas em 18 cidades de Santa Catarina"
+    },
+    {
+      "titulo": "Como funciona um curso de programação?",
+      "link": "https://www.jovemprogramador.com.br/n.php?ID=59&T=como-funciona-um-curso-de-programa-o",
+      "resumo": "O Jovem Programador é dividido em três módulos que, juntos, estruturam a formação do futuro profissional de TI"
+    },
+    {
+      "titulo": "Jovem Programador 2022: maratona de encerramento premiou três projetos",
+      "link": "https://www.jovemprogramador.com.br/n.php?ID=58&T=jovem-programador-2022-maratona-de-encerramento-premiou-tr-s-projetos",
+      "resumo": "O Hackathon deste ano contou com a participação de 44 equipes; inscrições para a edição 2023 já estão abertas"
+    },
+    {
+      "titulo": "Inscrições abertas para o Jovem Programador 2023",
+      "link": "https://www.jovemprogramador.com.br/n.php?ID=57&T=inscri-es-abertas-para-o-jovem-programador-2023",
+      "resumo": "Fique atento: as inscrições para a edição de 2023 do programa acontecem até o dia 19/02"
+    },
+    {
+      "titulo": "Solução para diversidade do mercado de trabalho foi a vencedora do Hackathon PJP",
+      "link": "https://www.jovemprogramador.com.br/n.php?ID=56&T=solu-o-para-diversidade-do-mercado-de-trabalho-foi-a-vencedora-do-hackathon-pjp",
+      "resumo": "Equipe de Blumenau ganhou o Hackathon 2022 do Jovem Programador"
+    },
+    {
+      "titulo": "Salve na agenda: Hackathon 2022 do Jovem Programador será em dezembro",
+      "link": "https://www.jovemprogramador.com.br/n.php?ID=51&T=salve-na-agenda-hackathon-2022-do-jovem-programador-ser-em-dezembro",
+      "resumo": "Alunos do programa de formação serão mentorados por profissionais e terão uma semana para mostrar suas habilidades na área de tecnologia"
+    },
+    {
+      "titulo": "Estágio no setor de tecnologia: por que é tão importante?",
+      "link": "https://www.jovemprogramador.com.br/n.php?ID=50&T=est-gio-no-setor-de-tecnologia-por-que-t-o-importante",
+      "resumo": "Saiba quais são os principais benefícios do estágio para a carreira profissional"
+    },
+    {
+      "titulo": "Importância do professor na formação em tecnologia",
+      "link": "https://www.jovemprogramador.com.br/n.php?ID=49&T=import-ncia-do-professor-na-forma-o-em-tecnologia",
+      "resumo": "Neste dia 15 de outubro, parabéns a todos os professores, em especial, aos profissionais que contribuem com a formação dos nossos estudantes do Jovem"
+    },
+    {
+      "titulo": "Conheça o Grupo BST Sistemas",
+      "link": "https://www.jovemprogramador.com.br/n.php?ID=48&T=conhe-a-o-grupo-bst-sistemas",
+      "resumo": "Soluções em sistemas nos segmentos notarial (cartórios) e educacional"
+    },
+    {
+      "titulo": "Lógica de programação: o que é e por que é tão importante?",
+      "link": "https://www.jovemprogramador.com.br/n.php?ID=47&T=l-gica-de-programa-o-o-que-e-por-que-t-o-importante",
+      "resumo": "Criar soluções práticas e eficientes com o objetivo de resolver as mais diversas situações e/ou problemas é cada vez mais necessário e é aí que entra"
+    },
+    {
+      "titulo": "Workshop sobre o LinkedIn: conecte-se a profissionais de todo o mundo",
+      "link": "https://www.jovemprogramador.com.br/n.php?ID=46&T=workshop-sobre-o-linkedin-conecte-se-a-profissionais-de-todo-o-mundo",
+      "resumo": "Criar ou atualizar um perfil no LinkedIn é uma estratégia certeira para ampliar suas chances de conseguir uma vaga"
+    },
+    {
+      "titulo": "Conheça a Seti Tecnologia",
+      "link": "https://www.jovemprogramador.com.br/n.php?ID=44&T=conhe-a-a-seti-tecnologia",
+      "resumo": "Soluções em cibersegurança para seus negócios"
+    },
+    {
+      "titulo": "Tecnologia: cadê as mulheres?",
+      "link": "https://www.jovemprogramador.com.br/n.php?ID=42&T=tecnologia-cad-as-mulheres",
+      "resumo": "Seprosc espera mais mulheres na terceira edição do Programa Jovem Programador"
+    },
+    {
+      "titulo": "Cinco carreiras promissoras na área de programação",
+      "link": "https://www.jovemprogramador.com.br/n.php?ID=41&T=cinco-carreiras-promissoras-na-rea-de-programa-o",
+      "resumo": "Salário para quem está começando opode chegar a R$ 3.500 em SC"
+    },
+    {
+      "titulo": "Pinhalzinho, Jovem Programador e a economia criativa",
+      "link": "https://www.jovemprogramador.com.br/n.php?ID=39&T=pinhalzinho-jovem-programador-e-a-economia-criativa",
+      "resumo": "As crises e as oportunidades de algo novo"
+    },
+    {
+      "titulo": "Mercado de trabalho: 5 dúvidas de quem está iniciando a carreira de programação",
+      "link": "https://www.jovemprogramador.com.br/n.php?ID=40&T=mercado-de-trabalho-5-d-vidas-de-quem-est-iniciando-a-carreira-de-programa-o",
+      "resumo": "Professor do Jovem Programador dá dicas para quem está começando"
+    },
+    {
+      "titulo": "Aulas do Jovem Programador já estão em andamento",
+      "link": "https://www.jovemprogramador.com.br/n.php?ID=38&T=aulas-do-jovem-programador-j-est-o-em-andamento",
+      "resumo": "Até o dia 1º de agosto, todas as cidades contempladas com a formação gratuita terão iniciado as aulas de capacitação nas unidades do Senac SC"
+    },
+    {
+      "titulo": "Aulas do Jovem Programador em Pinhalzinho começaram nessa semana com 35 alunos",
+      "link": "https://www.jovemprogramador.com.br/n.php?ID=37&T=aulas-do-jovem-programador-em-pinhalzinho-come-aram-nessa-semana-com-35-alunos",
+      "resumo": "Representantes das instituições parceiras prestigiaram a aula inaugural do programa"
+    },
+    {
+      "titulo": "Programa Jovem Programador aumenta oferta de vagas em 40%",
+      "link": "https://www.jovemprogramador.com.br/n.php?ID=36&T=programa-jovem-programador-aumenta-oferta-de-vagas-em-40",
+      "resumo": "Iniciativa contempla diversas regiões de Santa Catarina e, até 2024, o objetivo é oferecer uma versão online para alcançar todo o Estado"
+    },
+    {
+      "titulo": "Falta de professores na área de TI pode desacelerar o processo de formação de novos profissionais",
+      "link": "https://www.jovemprogramador.com.br/n.php?ID=35&T=falta-de-professores-na-rea-de-ti-pode-desacelerar-o-processo-de-forma-o-de-novos-profissionais",
+      "resumo": "Com o aumento da demanda por formação, cresce também a necessidade de professores capacitados"
+    },
+    {
+      "titulo": "Conheça a Havan Lab",
+      "link": "https://www.jovemprogramador.com.br/n.php?ID=34&T=conhe-a-a-havan-lab",
+      "resumo": "Atualmente o Havan Labs conta com um time de cerca de 400 pessoas que trabalham no desenvolvimento de soluções tecnológicas para o cliente Havan, para"
+    },
+    {
+      "titulo": "Conheça a Customax",
+      "link": "https://www.jovemprogramador.com.br/n.php?ID=33&T=conhe-a-a-customax",
+      "resumo": "Atuando desde 2010, com sede em Jaraguá do Sul SC, a Customax desenvolve customizações/integrações com o ERP"
+    },
+    {
+      "titulo": "Workshops do Jovem Programador começam nesta semana",
+      "link": "https://www.jovemprogramador.com.br/n.php?ID=32&T=workshops-do-jovem-programador-come-am-nesta-semana",
+      "resumo": "Serão oito horas divididas em dois dias de trabalho; participação é obrigatória para quem está inscrito no programa"
+    },
+    {
+      "titulo": "Confirmado: Pinhalzinho terá curso Jovem Programador pelo SENAC em 2022",
+      "link": "https://www.jovemprogramador.com.br/n.php?ID=31&T=confirmado-pinhalzinho-ter-curso-jovem-programador-pelo-senac-em-2022",
+      "resumo": "Os alunos que se destacarem depois de concluírem 35% das aulas já poderão iniciar um estágio nas empresas parceiras do programa."
+    },
+    {
+      "titulo": "Conheça a Horus",
+      "link": "https://www.jovemprogramador.com.br/n.php?ID=30&T=conhe-a-a-horus",
+      "resumo": "É uma Instituição de Ensino Superior do Oeste Catarinense, com campus em Pinhalzinho, ela foi classificada em 2013 como uma das três melhores empresas"
+    },
+    {
+      "titulo": "Conheça  JB Software",
+      "link": "https://www.jovemprogramador.com.br/n.php?ID=29&T=conhe-a-jb-software",
+      "resumo": "Uma empresa que desenvolve sistemas de contador para contador!"
+    },
+    {
+      "titulo": "Conheça a Trier",
+      "link": "https://www.jovemprogramador.com.br/n.php?ID=28&T=conhe-a-a-trier",
+      "resumo": "Trier Sistemas é uma nova marca que agrega tradição e inovação tecnológica, representando uma nova etapa na trajetória da empresa."
+    },
+    {
+      "titulo": "Conheça a Studos",
+      "link": "https://www.jovemprogramador.com.br/n.php?ID=27&T=conhe-a-a-studos",
+      "resumo": "A missão da Studos é melhorar as experiências em sala de aula, desde a aprendizagem dos alunos, até a simplificação do trabalho do professor ao elaborar uma avaliação"
+    },
+    {
+      "titulo": "Conheça  a NDD",
+      "link": "https://www.jovemprogramador.com.br/n.php?ID=25&T=conhe-a-a-ndd",
+      "resumo": "Agora, como Núcleo de Desenvolvimento Digital, a NDD apresenta uma identidade visual renovada e um novo propósito: gerar valor aos dados para transformar o mundo."
+    },
+    {
+      "titulo": "Conheça a Softplan",
+      "link": "https://www.jovemprogramador.com.br/n.php?ID=24&T=conhe-a-a-softplan",
+      "resumo": "A Softplan é uma empresa especialista em traduzir conhecimento em softwares que simplificam e geram mais eficiência aos mercados da Indústria da Construção, Justiça e Gestão Pública."
+    },
+    {
+      "titulo": "Conheça o Porter Group",
+      "link": "https://www.jovemprogramador.com.br/n.php?ID=23&T=conhe-a-o-porter-group",
+      "resumo": "O Porter Group é a união das empresas: Porter, Kiper e Villaro, que compartilham um mesmo propósito: transformar condomínios e melhorar a vida das pessoas."
+    },
+    {
+      "titulo": "Conheça a Ambev Tech",
+      "link": "https://www.jovemprogramador.com.br/n.php?ID=22&T=conhe-a-a-ambev-tech",
+      "resumo": "A empresa vem promovendo sua jornada de transformação tecnológica com objetivo de atender as demandas dos consumidores e clientes da melhor forma, prevendo as suas necessidades para antecipar soluções."
+    },
+    {
+      "titulo": "Conheça a Audaces",
+      "link": "https://www.jovemprogramador.com.br/n.php?ID=21&T=conhe-a-a-audaces",
+      "resumo": "Referência mundial em inovação tecnológica para a moda."
+    },
+    {
+      "titulo": "Inicio do 2º Módulo",
+      "link": "https://www.jovemprogramador.com.br/n.php?ID=20&T=inicio-do-2-m-dulo",
+      "resumo": "Quem ai está muito ansioso (a) por essas datas oficiais?"
+    },
+    {
+      "titulo": "INSCRIÇÕES ABERTAS para as cidades de CAÇADOR E CRICIÚMA",
+      "link": "https://www.jovemprogramador.com.br/n.php?ID=19&T=inscri-es-abertas-para-as-cidades-de-ca-ador-e-crici-ma",
+      "resumo": "Do dia 19/07 à  02/08 - Gratuito* Vagas remanescentes somente para estas 2 cidades e para jovens de 16 à  25 anos."
+    },
+    {
+      "titulo": "Conheça a Useall",
+      "link": "https://www.jovemprogramador.com.br/n.php?ID=18&T=conhe-a-a-useall",
+      "resumo": "A Useall é uma empresa que faz da tecnologia uma ferramenta capaz de gerar uma gestão mais objetiva, prática e inteligente."
+    },
+    {
+      "titulo": "Conheça a Fácil",
+      "link": "https://www.jovemprogramador.com.br/n.php?ID=17&T=conhe-a-a-f-cil",
+      "resumo": "Empresa líder no Brasil na área de soluções para departamentos jurídicos de grandes empresas e médios e grandes escritórios de advocacia."
+    },
+    {
+      "titulo": "Jovem Programador supera meta de inscrições",
+      "link": "https://www.jovemprogramador.com.br/n.php?ID=16&T=jovem-programador-supera-meta-de-inscri-es",
+      "resumo": "O Senac SC e o Seprosc  comemoram o sucesso do Jovem Programador, a meta inicial foi superada, com 3.174 jovens inscritos"
+    },
+    {
+      "titulo": "Conheça a Quick Soft",
+      "link": "https://www.jovemprogramador.com.br/n.php?ID=15&T=conhe-a-a-quick-soft",
+      "resumo": "Referência em soluções completas para o mercado financeiro. Entregamos soluções inovadoras e prezamos pelo máximo de integração, agilidade e confiabilidade no relacionamento entre empresas e negócios."
+    },
+    {
+      "titulo": "Conheça a Benner",
+      "link": "https://www.jovemprogramador.com.br/n.php?ID=14&T=conhe-a-a-benner",
+      "resumo": "A Benner inova para simplificar os negócios, transformarmos cenários e facilitarmos a vida de milhões de pessoas."
+    },
+    {
+      "titulo": "Conheça a WK sistemas",
+      "link": "https://www.jovemprogramador.com.br/n.php?ID=13&T=conhe-a-a-wk-sistemas",
+      "resumo": "Desde 1984, a WK Sistemas inspira as pessoas e aposta na tecnologia para simplificar o dia a dia das empresas."
+    },
+    {
+      "titulo": "Conheça  Senior",
+      "link": "https://www.jovemprogramador.com.br/n.php?ID=11&T=conhe-a-senior",
+      "resumo": "A Senior tem como um dos principais propósitos as pessoas, pois são elas que fazem da empresa uma marca inovadora que é referência no mercado."
+    },
+    {
+      "titulo": "Conheça a Amcom",
+      "link": "https://www.jovemprogramador.com.br/n.php?ID=10&T=conhe-a-a-amcom",
+      "resumo": "Empresa de tecnologia com sede em Blumenau, atua há mais de 20 anos no desenvolvimento customizado e sustentação de sistemas de informação."
+    },
+    {
+      "titulo": "Conheça a Datainfo",
+      "link": "https://www.jovemprogramador.com.br/n.php?ID=9&T=conhe-a-a-datainfo",
+      "resumo": "Com o objetivo de transformar soluções em Tecnologia mundo a fora, a Datainfo está estabilizada no cenário de TI há quase 20 anos, sendo uma das 200 maiores empresas de Tecnologia do país, com mais de 600 colaboradores"
+    },
+    {
+      "titulo": "Seprosc e Senac  lançaam projeto Jovem Programador com cursos na área de tecnologia",
+      "link": "https://www.jovemprogramador.com.br/n.php?ID=8&T=seprosc-e-senac-lan-aam-projeto-jovem-programador-com-cursos-na-rea-de-tecnologia",
+      "resumo": "Programa de capacitação tecnológica com foco na empregabilidade dos jovens catarinenses."
+    },
+    {
+      "titulo": "Projeto Jovem Programador levará formação gratuita em TI a todas as cidades de SC",
+      "link": "https://www.jovemprogramador.com.br/n.php?ID=7&T=projeto-jovem-programador-levar-forma-o-gratuita-em-ti-a-todas-as-cidades-de-sc",
+      "resumo": "Um dos diferenciais é a preparação para o teletrabalho, modalidade cada vez mais preferida por empresas e profissionais de TI, sem prejuízo de que os jovens possam ser contratados na modalidade presencial."
+    }
+  ],
+  "ser_professor": {
+    "titulo": "Como se tornar um professor do Jovem Programador",
+    "vagas_abertas": {
+      "texto": "Para conferir as vagas de professor que estão abertas, o candidato deve acessar o portal de talentos do Senac SC.",
+      "link": "https://portal.sc.senac.br/portal/app/frame.aspx?secao_id=11"
+    },
+    "registrar_interesse": {
+      "texto": "Caso não encontre uma vaga para a sua cidade no portal do Senac, o candidato pode registrar seu interesse preenchendo o formulário na página 'Quero Ser Professor' no site do Jovem Programador.",
+      "link_pagina": "https://www.jovemprogramador.com.br/queroserprofessor/"
+    }
+  }
 }
