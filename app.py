@@ -85,7 +85,7 @@ def main_terminal():
 
 if __name__ == "__main__":
     # Para rodar o chat de TESTE no TERMINAL, deixe esta linha descomentada:
-    # main_terminal()
+    main_terminal()
 
     # Para rodar o SERVIDOR WEB, comente a linha acima e descomente a linha abaixo:
-    app.run(debug=True, port=5000)
+    # app.run(debug=True, port=5000)

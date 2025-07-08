@@ -38,7 +38,7 @@ class Chatbot:
         self.contexto_inicial = self._criar_contexto()
 
         # 4. Inicia o modelo e a sessão de chat
-        self.model = genai.GenerativeModel("gemini-1.5-flash")
+        self.model = genai.GenerativeModel("gemini-2.5-pro")
         self.chat_session = self.model.start_chat(history=[])
 
         # 5. "Ensina" o Gemini enviando o contexto inicial
@@ -66,20 +66,43 @@ class Chatbot:
                     for n in noticias_formatadas
                 ]
             )
-            
-              # Formata a seção 'Como ser Professor' (NOVO)
+
+            # Formata a seção 'Como ser Professor' (NOVO)
         prof_info = self.dados.get("ser_professor", {})
         prof_texto = "Informação sobre como se tornar professor não foi encontrada."
-        if prof_info and prof_info.get('vagas_abertas'):
-            vagas = prof_info.get('vagas_abertas', {})
-            interesse = prof_info.get('registrar_interesse', {})
+        if prof_info and prof_info.get("vagas_abertas"):
+            vagas = prof_info.get("vagas_abertas", {})
+            interesse = prof_info.get("registrar_interesse", {})
             prof_texto = (
                 f"Existem duas maneiras de se candidatar:\n"
                 f"1. Para Vagas Abertas: {vagas.get('texto', '')} O link do portal é: {vagas.get('link', '')}\n"
                 f"2. Para Registrar Interesse: {interesse.get('texto', '')} A página para isso é: {interesse.get('link_pagina', '')}"
             )
-            
-            
+
+            # Formata a seção 'Hackathon' para incluir as notícias
+        hackathon_info = self.dados.get("hackathon", {})
+        hackathon_texto = "Informação sobre o Hackathon não foi encontrada."
+        if hackathon_info and hackathon_info.get("descricao"):
+            desc = hackathon_info.get("descricao", "")
+            video = hackathon_info.get("link_video", "")
+            # Texto base
+            hackathon_texto = (
+                f"{desc}\nPara saber mais, assista ao vídeo principal: {video}"
+            )
+
+            # (NOVO) Adiciona as notícias relacionadas, se existirem
+            noticias_hackathon = hackathon_info.get("noticias", [])
+            if noticias_hackathon:
+                hackathon_texto += "\n\nÚLTIMAS NOTÍCIAS SOBRE O HACKATHON:\n"
+                # Formata cada notícia em uma lista
+                noticias_formatadas = "".join(
+                    [
+                        f"- Título: {n.get('titulo')}\n  Resumo: {n.get('resumo')}\n  Leia mais em: {n.get('link')}\n\n"
+                        for n in noticias_hackathon
+                    ]
+                )
+                hackathon_texto += noticias_formatadas
+
         else:
             noticias_texto = "Nenhuma notícia recente disponível."
 
@@ -107,6 +130,9 @@ class Chatbot:
         
         COMO SER PROFESSOR:
         {prof_texto}
+        
+        SOBRE O HACKATHON:
+        {hackathon_texto}
 
         --- REGRAS DE COMPORTAMENTO ---
         1. Se a pergunta do usuário não tiver relação com o programa Jovem Programador, recuse educadamente. Diga algo como: "Minha especialidade é apenas o programa Jovem Programador. Posso ajudar com algo sobre isso? 😉"

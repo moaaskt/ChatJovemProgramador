@@ -203,6 +203,74 @@ def raspar_ser_professor():
         return {"ser_professor": {}}
 
 
+def raspar_hackathon():
+    """Raspa a descrição, vídeo e notícias relacionadas da página do Hackathon."""
+    print("🏆 Raspando informações completas sobre o Hackathon...")
+    try:
+        url = "https://www.jovemprogramador.com.br/hackathon/"
+        headers = {
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"
+        }
+        response = requests.get(url, headers=headers)
+
+        if response.status_code != 200:
+            print(
+                f"❌ ERRO ao acessar a página do Hackathon. Código: {response.status_code}"
+            )
+            return {"hackathon": {}}
+
+        soup = BeautifulSoup(response.text, "html.parser")
+
+        # --- Parte 1: Extrair a descrição geral ---
+        descricao = ""
+        container_desc = soup.find("div", id="fh5co-about")
+        if container_desc:
+            paragrafos = container_desc.find_all("p")
+            descricao = "\n".join([p.get_text(strip=True) for p in paragrafos])
+
+        # --- Parte 2: Extrair o link do vídeo ---
+        link_video = ""
+        if container_desc:
+            iframe = container_desc.find("iframe")
+            if iframe and "src" in iframe.attrs:
+                link_video = iframe["src"]
+
+        # --- Parte 3: Extrair as notícias do Hackathon (NOVO) ---
+        print("    - Procurando notícias relacionadas ao Hackathon...")
+        noticias_relacionadas = []
+        # O seletor 'a' com a classe 'item-grid' parece ser o ideal
+        cards_noticias = soup.find_all("a", class_="item-grid")
+
+        for card in cards_noticias:
+            titulo_tag = card.find("h3", class_="title")
+            resumo_tag = card.find("p")
+
+            if titulo_tag and "href" in card.attrs:
+                titulo = titulo_tag.get_text(strip=True)
+                link_relativo = card["href"]
+                link = f"https://www.jovemprogramador.com.br/{link_relativo}"
+                resumo = resumo_tag.get_text(strip=True) if resumo_tag else ""
+                noticias_relacionadas.append(
+                    {"titulo": titulo, "resumo": resumo, "link": link}
+                )
+
+        print(f"    - Encontradas {len(noticias_relacionadas)} notícias do Hackathon.")
+
+        # --- Parte 4: Montar o dicionário final ---
+        dados_hackathon = {
+            "descricao": descricao,
+            "link_video": link_video,
+            "noticias": noticias_relacionadas,  # Adicionando a lista de notícias
+        }
+
+        print("✅ Informações do Hackathon extraídas com sucesso.")
+        return {"hackathon": dados_hackathon}
+
+    except Exception as e:
+        print(f"❌ ERRO INESPERADO ao raspar a página do Hackathon: {e}")
+        return {"hackathon": {}}
+
+
 def salvar_dados():
     print("\n🚀 Iniciando raspagem completa do site...")
     dados = {
@@ -210,10 +278,11 @@ def salvar_dados():
         "duvidas": raspar_duvidas()["duvidas"],
         "cidades": raspar_cidades()["cidades"],
         "noticias": raspar_noticias()["noticias"],
-        "ser_professor": raspar_ser_professor()["ser_professor"],  # <-- NOVA LINHA
+        "ser_professor": raspar_ser_professor()["ser_professor"],
+        "hackathon": raspar_hackathon()["hackathon"]  # <-- ESTA É A LINHA QUE PRECISA ESTAR LÁ
     }
-
-    with open("dados.json", "w", encoding="utf-8") as f:
+    
+    with open('dados.json', 'w', encoding='utf-8') as f:
         json.dump(dados, f, ensure_ascii=False, indent=2)
     print("\n✅ Dados atualizados e salvos com sucesso em 'dados.json'")
 

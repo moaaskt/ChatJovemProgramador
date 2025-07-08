@@ -553,5 +553,191 @@
       "texto": "Caso não encontre uma vaga para a sua cidade no portal do Senac, o candidato pode registrar seu interesse preenchendo o formulário na página 'Quero Ser Professor' no site do Jovem Programador.",
       "link_pagina": "https://www.jovemprogramador.com.br/queroserprofessor/"
     }
+  },
+  "hackathon": {
+    "descricao": "",
+    "link_video": "",
+    "noticias": [
+      {
+        "titulo": "Hei Aluno! PARTICIPE DO WARM UP HACKATHON 2024",
+        "resumo": "Warm Up Hackathon Jovem Programador 2024: Prepare-se para a Maratona de Inovação!",
+        "link": "https://www.jovemprogramador.com.br/n.php?ID=111&T=hei-aluno-participe-do-warm-up-hackathon-2024"
+      },
+      {
+        "titulo": "O tal do Pitch: chegou a hora de vender o seu peixe!",
+        "resumo": "Hackathon 2024: descubra a importância do pitch na hora de mostrar todo o potencial de negócio da solução desenvolvida",
+        "link": "https://www.jovemprogramador.com.br/n.php?ID=54&T=o-tal-do-pitch-chegou-a-hora-de-vender-o-seu-peixe"
+      },
+      {
+        "titulo": "Prototipação: chegou a hora de modelar as ideias",
+        "resumo": "Depois de validar o problema, é hora de construir um protótipo e entregar o MVP",
+        "link": "https://www.jovemprogramador.com.br/n.php?ID=53&T=prototipa-o-chegou-a-hora-de-modelar-as-ideias"
+      },
+      {
+        "titulo": "MANÉVS - Florianópolis",
+        "resumo": "",
+        "link": "https://www.jovemprogramador.com.br/vencedores.php?ID=5&T=man-vs-florian-polis"
+      },
+      {
+        "titulo": "Os Corvuris - Fraiburgo",
+        "resumo": "",
+        "link": "https://www.jovemprogramador.com.br/vencedores.php?ID=6&T=os-corvuris-fraiburgo"
+      },
+      {
+        "titulo": "GPS Grandes Programadores - Chapecó",
+        "resumo": "",
+        "link": "https://www.jovemprogramador.com.br/vencedores.php?ID=7&T=gps-grandes-programadores-chapec"
+      },
+      {
+        "titulo": "Acompanhe a Abertura do Hackathon do Jovem Programador",
+        "resumo": "",
+        "link": "https://www.jovemprogramador.com.br/https://www.youtube.com/watch?v=u2JOfCo4msY"
+      },
+      {
+        "titulo": "Acompanhe a Encerramento do Hackathon do Jovem Programador",
+        "resumo": "",
+        "link": "https://www.jovemprogramador.com.br/https://www.youtube.com/watch?v=DTnDxHgJiDI"
+      },
+      {
+        "titulo": "Confira o encerramento do Hackathon 2023",
+        "resumo": "",
+        "link": "https://www.jovemprogramador.com.br/https://www.youtube.com/watch?v=rT_hzxyR5cc"
+      },
+      {
+        "titulo": "Everton Tomazi",
+        "resumo": "Havan Labs",
+        "link": "https://www.jovemprogramador.com.br/www.linkedin.com/in/everton-tomazi"
+      },
+      {
+        "titulo": "Francielle Cristina Gaertner",
+        "resumo": "Senac",
+        "link": "https://www.jovemprogramador.com.br/https://www.linkedin.com/in/francielle-cristina-gaertner-3b2408173/"
+      },
+      {
+        "titulo": "Thales Testoni",
+        "resumo": "Havan Labs",
+        "link": "https://www.jovemprogramador.com.br/https://www.linkedin.com/in/thalestestoni/"
+      },
+      {
+        "titulo": "Marcelo Cavaglieri",
+        "resumo": "Senac",
+        "link": "https://www.jovemprogramador.com.br/https://www.linkedin.com/in/marcelo-cavaglieri-436930281/"
+      },
+      {
+        "titulo": "Klaus Dellano",
+        "resumo": "Havan Labs",
+        "link": "https://www.jovemprogramador.com.br/https://www.linkedin.com/in/klaus-dellano/"
+      },
+      {
+        "titulo": "Leila di Pietro",
+        "resumo": "Senac",
+        "link": "https://www.jovemprogramador.com.br/https://www.linkedin.com/in/leila-di-pietro-7802a839/"
+      },
+      {
+        "titulo": "Alessandra Cristal de Leon Seindenfuss",
+        "resumo": "Senac",
+        "link": "https://www.jovemprogramador.com.br/https://www.linkedin.com/in/alessandra-cristal-8108b1127/"
+      },
+      {
+        "titulo": "Flávio Luiz",
+        "resumo": "WK",
+        "link": "https://www.jovemprogramador.com.br/https://www.linkedin.com/in/fl%C3%A1vio-luiz-jr/"
+      },
+      {
+        "titulo": "Nathália Bernardinetti",
+        "resumo": "Senac",
+        "link": "https://www.jovemprogramador.com.br/https://www.linkedin.com/in/nathaliabernardinetti/"
+      },
+      {
+        "titulo": "Lucas Felicio Alfini",
+        "resumo": "Havan Labs / Senac",
+        "link": "https://www.jovemprogramador.com.br/https://www.linkedin.com/in/lucasfelicioa/"
+      },
+      {
+        "titulo": "Pedro André",
+        "resumo": "Havan Labs",
+        "link": "https://www.jovemprogramador.com.br/https://www.linkedin.com/in/pedro-andr%C3%A9-dos-santos-9b8135226/"
+      },
+      {
+        "titulo": "Wesley Kowalski",
+        "resumo": "Cloudpark",
+        "link": "https://www.jovemprogramador.com.br/https://www.linkedin.com/in/kowalskiwesley/"
+      },
+      {
+        "titulo": "Daniel Santos",
+        "resumo": "Havan Labs",
+        "link": "https://www.jovemprogramador.com.br/https://www.linkedin.com/in/daniel-sg/"
+      },
+      {
+        "titulo": "Cristina da Silva Reis",
+        "resumo": "Senac",
+        "link": "https://www.jovemprogramador.com.br/https://www.linkedin.com/in/cristinasreis/"
+      },
+      {
+        "titulo": "Leonardo Vianna",
+        "resumo": "Senac",
+        "link": "https://www.jovemprogramador.com.br/https://www.linkedin.com/in/viannaleonardo/"
+      },
+      {
+        "titulo": "Igor Silvestrin",
+        "resumo": "Havan Labs",
+        "link": "https://www.jovemprogramador.com.br/https://www.linkedin.com/in/igor-silvestrin-3b5279221/"
+      },
+      {
+        "titulo": "Alessandro Nunes",
+        "resumo": "Datainfo",
+        "link": "https://www.jovemprogramador.com.br/https://www.linkedin.com/in/alessandro-nunes/"
+      },
+      {
+        "titulo": "Sabrina Mozena",
+        "resumo": "Clube Associados",
+        "link": "https://www.jovemprogramador.com.br/https://www.linkedin.com/in/sabrina-mozena-2a928121a/"
+      },
+      {
+        "titulo": "Guilherme de Souza",
+        "resumo": "Onda Segura",
+        "link": "https://www.jovemprogramador.com.br/https://www.linkedin.com/in/guilherme-s-366914121/"
+      },
+      {
+        "titulo": "Geisa Campos dos Santos",
+        "resumo": "Senac",
+        "link": "https://www.jovemprogramador.com.br/https://www.linkedin.com/in/geisa-campos-dos-santos-a09bbb1b4/"
+      },
+      {
+        "titulo": "Ana Paula Augusto",
+        "resumo": "Senac",
+        "link": "https://www.jovemprogramador.com.br/https://www.linkedin.com/in/ana-paula-augusto-151a6ba8/"
+      },
+      {
+        "titulo": "Jhonata Lamin",
+        "resumo": "Exímio / Senac",
+        "link": "https://www.jovemprogramador.com.br/https://www.linkedin.com/in/jhonata-lamim-61366484/"
+      },
+      {
+        "titulo": "Lucas Bernardes da Silva",
+        "resumo": "WK",
+        "link": "https://www.jovemprogramador.com.br/https://www.linkedin.com/in/lucasbernardes/"
+      },
+      {
+        "titulo": "Gabriel Rabel",
+        "resumo": "Onda Segura",
+        "link": "https://www.jovemprogramador.com.br/https://www.linkedin.com/in/gabrielrabel/"
+      },
+      {
+        "titulo": "Gabriela Lopes Batista",
+        "resumo": "Senac",
+        "link": "https://www.jovemprogramador.com.br/https://www.linkedin.com/in/gabriela-lopes-888505137/"
+      },
+      {
+        "titulo": "Joice Iahn",
+        "resumo": "Senac",
+        "link": "https://www.jovemprogramador.com.br/https://www.linkedin.com/in/joice-iahn-3b422445/"
+      },
+      {
+        "titulo": "Douglas Nardes",
+        "resumo": "Datainfo",
+        "link": "https://www.jovemprogramador.com.br/https://www.linkedin.com/in/dougnardes/"
+      }
+    ]
   }
 }
