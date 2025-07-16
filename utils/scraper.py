@@ -90,62 +90,66 @@ def raspar_cidades():
 
 
 def raspar_noticias():
-    """Raspa TODAS as notícias da página usando a estrutura HTML correta."""
-    print("📰 Raspando TODAS as notícias com o novo seletor...")
+    """
+    Raspa a lista de notícias e, em seguida, visita cada link para
+    extrair TODO o texto de cada artigo.
+    """
+    print("📰 Iniciando raspagem profunda de TODAS as notícias (isso pode levar alguns minutos)...")
     try:
-        url = "https://www.jovemprogramador.com.br/noticias.php"
-        headers = {
-            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"
-        }
-        response = requests.get(url, headers=headers)
+        url_lista = "https://www.jovemprogramador.com.br/noticias.php"
+        headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'}
+        response_lista = requests.get(url_lista, headers=headers)
+        
+        if response_lista.status_code != 200:
+            print(f"❌ ERRO: Falha ao acessar a lista de notícias. Código: {response_lista.status_code}")
+            return {"noticias": []}
 
-        if response.status_code != 200:
-            print(f"❌ ERRO: Falha ao acessar a página. Código: {response.status_code}")
-            return {"noticias": "Erro de conexão com o site."}
+        soup_lista = BeautifulSoup(response_lista.text, 'html.parser')
+        noticias_completas = []
+        
+        cards_containers = soup_lista.find_all('div', class_='col-md-4')
+        total_noticias = len(cards_containers)
+        print(f"Encontrados {total_noticias} artigos para extrair.")
 
-        soup = BeautifulSoup(response.text, "html.parser")
-        noticias = []
+        for i, container in enumerate(cards_containers):
+            titulo_tag = container.find('h3', class_='title')
+            link_tag = container.find('a')
 
-        # NOVA ESTRATÉGIA: Encontrar os contêineres das colunas, que são mais confiáveis.
-        # A classe 'col-md-4' parece ser o contêiner de cada notícia.
-        cards_containers = soup.find_all("div", class_="col-md-4")
-        print(f"Encontrados {len(cards_containers)} possíveis contêineres de notícia.")
-
-        for container in cards_containers:
-            # Dentro de cada contêiner, procuramos os elementos específicos da notícia
-            titulo_tag = container.find("h3", class_="title")
-            resumo_tag = container.find("p")
-            link_tag = container.find(
-                "a"
-            )  # O link geralmente envolve a imagem ou o card todo
-
-            # Só consideramos um card válido se ele tiver um título e um link
-            if titulo_tag and link_tag and "href" in link_tag.attrs:
+            if titulo_tag and link_tag and 'href' in link_tag.attrs:
                 titulo = titulo_tag.get_text(strip=True)
-                link_relativo = link_tag["href"]
-                link = f"https://www.jovemprogramador.com.br/{link_relativo}"
-
-                # Pega o resumo, se existir, senão define um padrão.
-                resumo = (
-                    resumo_tag.get_text(strip=True)
-                    if resumo_tag
-                    else "Resumo não disponível."
-                )
-
-                noticias.append({"titulo": titulo, "link": link, "resumo": resumo})
-
-        if noticias:
-            print(f"✅ SUCESSO! Total de {len(noticias)} notícias extraídas.")
-        else:
-            print(
-                "⚠️ AVISO: Nenhuma notícia foi extraída. A estrutura pode ter mudado novamente."
-            )
-
-        return {"noticias": noticias}
-
+                link_absoluto = f"https://www.jovemprogramador.com.br/{link_tag['href']}"
+                
+                print(f"    -> Raspando conteúdo do artigo {i+1}/{total_noticias}: {titulo}")
+                try:
+                    response_artigo = requests.get(link_absoluto, headers=headers)
+                    if response_artigo.status_code == 200:
+                        soup_artigo = BeautifulSoup(response_artigo.text, 'html.parser')
+                        secao_artigo = soup_artigo.find('div', id='fh5co-blog-section')
+                        
+                        texto_completo = ""
+                        if secao_artigo:
+                            # --- AQUI ESTÁ A MUDANÇA PRINCIPAL ---
+                            # Em vez de pegar só os <p>, pegamos TODO o texto da seção.
+                            # O separator='\n' garante quebras de linha entre os elementos.
+                            texto_completo = secao_artigo.get_text(separator='\n', strip=True)
+                        else:
+                            texto_completo = "Não foi possível extrair o texto completo do artigo."
+                            
+                        noticias_completas.append({
+                            "titulo": titulo,
+                            "link": link_absoluto,
+                            "texto_completo": texto_completo
+                        })
+                except Exception as e_artigo:
+                    print(f"      - ERRO ao processar o artigo {link_absoluto}: {e_artigo}")
+        
+        print(f"✅ SUCESSO! Conteúdo completo de {len(noticias_completas)} notícias extraído.")
+        return {"noticias": noticias_completas}
+        
     except Exception as e:
-        print(f"❌ ERRO INESPERADO: {e}")
-        return {"noticias": "Erro durante a execução do scraper."}
+        print(f"❌ ERRO INESPERADO na função raspar_noticias: {e}")
+        return {"noticias": []}
+
 
 
 def raspar_ser_professor():

@@ -1,5 +1,3 @@
-# utils/responder.py (Versão Simplificada)
-
 import os
 import json
 import google.generativeai as genai
@@ -11,13 +9,8 @@ load_dotenv()
 
 class Chatbot:
     def __init__(self):
-        """
-        O construtor da classe agora faz tudo: configura a API, carrega os dados,
-        cria o contexto e inicia a sessão de chat com o Gemini.
-        """
         print("🤖 Inicializando o Chatbot com Gemini...")
 
-        # 1. Configura a chave da API
         api_key = os.getenv("GEMINI_API_KEY")
         if not api_key:
             raise ValueError(
@@ -25,7 +18,6 @@ class Chatbot:
             )
         genai.configure(api_key=api_key)
 
-        # 2. Carrega os dados de contexto do seu JSON
         try:
             with open("dados.json", "r", encoding="utf-8") as f:
                 self.dados = json.load(f)
@@ -34,22 +26,13 @@ class Chatbot:
                 "Arquivo 'dados.json' não encontrado! Execute o scraper.py primeiro."
             )
 
-        # 3. Cria o prompt de contexto inicial para o Gemini
         self.contexto_inicial = self._criar_contexto()
-
-        # 4. Inicia o modelo e a sessão de chat
-        self.model = genai.GenerativeModel("gemini-2.5-pro")
+        self.model = genai.GenerativeModel("gemini-2.5-flash")
         self.chat_session = self.model.start_chat(history=[])
-
-        # 5. "Ensina" o Gemini enviando o contexto inicial
         self.chat_session.send_message(self.contexto_inicial)
         print("✅ Chatbot pronto e online!")
 
     def _criar_contexto(self):
-        """
-        Esta função é a mais importante. Ela monta as instruções para o Gemini.
-        """
-        # Formata a seção de dúvidas
         duvidas_texto = "".join(
             [
                 f"• {pergunta}: {resposta}\n"
@@ -57,19 +40,20 @@ class Chatbot:
             ]
         )
 
-        # Formata a seção de notícias (NOVO)
-        noticias_formatadas = self.dados.get("noticias", [])
-        if isinstance(noticias_formatadas, list) and noticias_formatadas:
+        todas_as_noticias = self.dados.get("noticias", [])
+        noticias_para_contexto = todas_as_noticias[:5]
+
+        if isinstance(noticias_para_contexto, list) and noticias_para_contexto:
             noticias_texto = "".join(
                 [
-                    f"• Título: {n.get('titulo', '')}\n  Resumo: {n.get('resumo', '')}\n  Link: {n.get('link', '')}\n\n"
-                    for n in noticias_formatadas
+                    f"• Título: {n.get('titulo', '')}\n  Texto Completo: {n.get('texto_completo', '')}\n  Link: {n.get('link', '')}\n\n"
+                    for n in noticias_para_contexto
                 ]
             )
+        else:
+            noticias_texto = "Nenhuma notícia recente disponível."
 
-            # Formata a seção 'Como ser Professor' (NOVO)
         prof_info = self.dados.get("ser_professor", {})
-        prof_texto = "Informação sobre como se tornar professor não foi encontrada."
         if prof_info and prof_info.get("vagas_abertas"):
             vagas = prof_info.get("vagas_abertas", {})
             interesse = prof_info.get("registrar_interesse", {})
@@ -78,38 +62,40 @@ class Chatbot:
                 f"1. Para Vagas Abertas: {vagas.get('texto', '')} O link do portal é: {vagas.get('link', '')}\n"
                 f"2. Para Registrar Interesse: {interesse.get('texto', '')} A página para isso é: {interesse.get('link_pagina', '')}"
             )
-
-            # Formata a seção 'Hackathon' para incluir as notícias
-        hackathon_info = self.dados.get("hackathon", {})
-        hackathon_texto = "Informação sobre o Hackathon não foi encontrada."
-        if hackathon_info and hackathon_info.get("descricao"):
-            desc = hackathon_info.get("descricao", "")
-            video = hackathon_info.get("link_video", "")
-            # Texto base
-            hackathon_texto = (
-                f"{desc}\nPara saber mais, assista ao vídeo principal: {video}"
-            )
-
-            # (NOVO) Adiciona as notícias relacionadas, se existirem
-            noticias_hackathon = hackathon_info.get("noticias", [])
-            if noticias_hackathon:
-                hackathon_texto += "\n\nÚLTIMAS NOTÍCIAS SOBRE O HACKATHON:\n"
-                # Formata cada notícia em uma lista
-                noticias_formatadas = "".join(
-                    [
-                        f"- Título: {n.get('titulo')}\n  Resumo: {n.get('resumo')}\n  Leia mais em: {n.get('link')}\n\n"
-                        for n in noticias_hackathon
-                    ]
-                )
-                hackathon_texto += noticias_formatadas
-
         else:
-            noticias_texto = "Nenhuma notícia recente disponível."
+            prof_texto = "Informação sobre como se tornar professor não foi encontrada."
+
+        hackathon_info = self.dados.get("hackathon", {})
+        hackathon_texto = ""
+
+        desc = hackathon_info.get("descricao", "")
+        video = hackathon_info.get("link_video", "")
+        noticias_hackathon = hackathon_info.get("noticias", [])
+
+        if desc:
+            hackathon_texto += f"{desc}\n"
+        if video:
+            hackathon_texto += f"Para saber mais, assista ao vídeo principal: {video}\n"
+
+        if noticias_hackathon:
+            hackathon_texto += "\nÚLTIMAS NOTÍCIAS SOBRE O HACKATHON:\n"
+            noticias_formatadas = "".join(
+                [
+                    f"- Título: {n.get('titulo')}\n  Resumo: {n.get('resumo')}\n  Leia mais em: {n.get('link')}\n\n"
+                    for n in noticias_hackathon
+                ]
+            )
+        hackathon_texto += noticias_formatadas
+
+        if not hackathon_texto.strip():
+            hackathon_texto = "Informação sobre o Hackathon não foi encontrada."
 
         contexto = f"""
-        Você é um assistente virtual especialista no programa Jovem Programador.
-        Sua personalidade é amigável, prestativa e você usa emojis para ser mais acolhedor 😊.
+        Você é um assistente virtual chamado "leo" ou "leozin" especialista no programa Jovem Programador.
         Sua única e exclusiva função é responder perguntas sobre este programa.
+        Sua personalidade é amigável, prestativa e você usa emojis de forma leve e ocasional 😊. 
+        Evite repetir saudações como "Olá" ou "Oi" em todas as respostas. Use saudações apenas no início da conversa.
+
 
         Use APENAS as informações oficiais fornecidas abaixo para basear 100% de suas respostas.
         NÃO invente informações e NÃO use conhecimento externo.
@@ -142,16 +128,10 @@ class Chatbot:
         return contexto
 
     def gerar_resposta(self, user_message):
-        """
-        Este é agora o único método público. Ele recebe a mensagem do usuário
-        e retorna a resposta do Gemini.
-        """
         if not user_message.strip():
             return "Por favor, digite sua pergunta! Estou aqui para ajudar. 😄"
 
         try:
-            # Simplesmente envia a mensagem do usuário para a sessão de chat ativa.
-            # O Gemini já sabe como se comportar por causa do contexto inicial.
             response = self.chat_session.send_message(user_message)
             return response.text
         except Exception as e:
