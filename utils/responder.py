@@ -129,6 +129,15 @@ class Chatbot:
                 + "."
             )
 
+        # Formata a seção 'Parceiros'
+        parceiros_info = self.dados.get("parceiros", [])
+        parceiros_texto = "Não encontrei a lista de parceiros do programa."
+        if parceiros_info:
+            lista_nomes = [p.get("nome", "") for p in parceiros_info]
+            parceiros_texto = (
+                "Os parceiros do programa são: " + ", ".join(lista_nomes) + "."
+            )
+
         # A montagem do contexto final
         contexto = f"""
         Você é um assistente virtual chamado "leo" ou "leozin" especialista no programa Jovem Programador.
@@ -168,6 +177,8 @@ class Chatbot:
         PATROCINADORES:
         {patrocinadores_texto}
         
+        PARCEIROS:
+        {parceiros_texto}
 
         --- REGRAS DE COMPORTAMENTO ---
         1. Se a pergunta do usuário não tiver relação com o programa Jovem Programador, recuse educadamente. Diga algo como: "Minha especialidade é apenas o programa Jovem Programador. Posso ajudar com algo sobre isso? 😉"

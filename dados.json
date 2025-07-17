@@ -35,28 +35,8 @@
   },
   "apoiadores": [
     {
-      "nome": "Orion",
-      "link": "https://www.orionparque.com/"
-    },
-    {
-      "nome": "Citeb",
-      "link": "https://www.citeb.com.br/"
-    },
-    {
-      "nome": "Amureltec",
-      "link": "https://amureltec.com.br/"
-    },
-    {
       "nome": "Gene",
       "link": "https://www.institutogene.org.br/"
-    },
-    {
-      "nome": "CIB",
-      "link": "https://www.centrosdeinovacao.sc.gov.br/centro-de-inovacao-de-blumenau/"
-    },
-    {
-      "nome": "Inovale",
-      "link": "https://www.poloinovale.com.br/"
     },
     {
       "nome": "COLLABTECH",
@@ -67,16 +47,36 @@
       "link": "https://www.acate.com.br/"
     },
     {
+      "nome": "Orion",
+      "link": "https://www.orionparque.com/"
+    },
+    {
+      "nome": "CIB",
+      "link": "https://www.centrosdeinovacao.sc.gov.br/centro-de-inovacao-de-blumenau/"
+    },
+    {
+      "nome": "Citeb",
+      "link": "https://www.citeb.com.br/"
+    },
+    {
+      "nome": "Inovale",
+      "link": "https://www.poloinovale.com.br/"
+    },
+    {
       "nome": "Novale Hub",
       "link": "http://www.novalehub.com.br/"
     },
     {
-      "nome": "Communitech",
-      "link": "https://www.communi.tech/"
+      "nome": "Amureltec",
+      "link": "https://amureltec.com.br/"
     },
     {
       "nome": "Somar",
       "link": "http://somarsc.org/"
+    },
+    {
+      "nome": "Communitech",
+      "link": "https://www.communi.tech/"
     },
     {
       "nome": "LoQQuei by AMB é a nova patrocinadora do Jovem Programador",
@@ -93,88 +93,88 @@
   ],
   "patrocinadores": [
     {
-      "nome": "AMB Infraestrutura Tecnológica",
-      "link": "https://ambcorporativo.com.br"
-    },
-    {
-      "nome": "AP Controle",
-      "link": "https://www.apcontrole.com.br/"
-    },
-    {
-      "nome": "Cloudpark",
-      "link": "https://cloudpark.com.br/"
-    },
-    {
-      "nome": "Exímio ",
-      "link": "https://www.eximioti.com.br/"
-    },
-    {
-      "nome": "Senior",
-      "link": "https://www.senior.com.br/"
-    },
-    {
-      "nome": "Mobuss",
-      "link": "https://www.mobussconstrucao.com.br"
-    },
-    {
-      "nome": "Dev10",
-      "link": "https://institucional.pedidos10.com.br/"
-    },
-    {
-      "nome": "NDD",
-      "link": "https://ndd.tech/"
-    },
-    {
-      "nome": "Koerich Lab",
-      "link": "https://klab.com.br"
-    },
-    {
-      "nome": "Radek",
-      "link": "https://radek.com.br/"
-    },
-    {
       "nome": "DGSYS",
       "link": "https://dgsys.com.br/"
-    },
-    {
-      "nome": "DataRunk",
-      "link": "https://datarunk.com/"
-    },
-    {
-      "nome": "Softplan",
-      "link": "https://www.softplan.com.br/"
-    },
-    {
-      "nome": "hartsystem",
-      "link": "https://www.hartsystem.com.br/"
-    },
-    {
-      "nome": "Teclógica",
-      "link": "https://www.teclogica.com.br/"
-    },
-    {
-      "nome": "CB Sistemas",
-      "link": "https://www.cbsistemas.com.br"
-    },
-    {
-      "nome": "WK",
-      "link": "https://wk.com.br/"
-    },
-    {
-      "nome": "ADM Sistemas",
-      "link": "https://web.adminfo.com.br"
     },
     {
       "nome": "Clube Associados",
       "link": "https://clubesassociados.com.br/"
     },
     {
+      "nome": "DataRunk",
+      "link": "https://datarunk.com/"
+    },
+    {
+      "nome": "Senior",
+      "link": "https://www.senior.com.br/"
+    },
+    {
       "nome": "Grupo BST",
       "link": "https://www.grupobst.com.br/"
     },
     {
+      "nome": "CB Sistemas",
+      "link": "https://www.cbsistemas.com.br"
+    },
+    {
       "nome": "Datainfo",
       "link": "https://www.datainfo.inf.br/"
+    },
+    {
+      "nome": "Exímio ",
+      "link": "https://www.eximioti.com.br/"
+    },
+    {
+      "nome": "AMB Infraestrutura Tecnológica",
+      "link": "https://ambcorporativo.com.br"
+    },
+    {
+      "nome": "WK",
+      "link": "https://wk.com.br/"
+    },
+    {
+      "nome": "Koerich Lab",
+      "link": "https://klab.com.br"
+    },
+    {
+      "nome": "Dev10",
+      "link": "https://institucional.pedidos10.com.br/"
+    },
+    {
+      "nome": "AP Controle",
+      "link": "https://www.apcontrole.com.br/"
+    },
+    {
+      "nome": "Softplan",
+      "link": "https://www.softplan.com.br/"
+    },
+    {
+      "nome": "Cloudpark",
+      "link": "https://cloudpark.com.br/"
+    },
+    {
+      "nome": "Teclógica",
+      "link": "https://www.teclogica.com.br/"
+    },
+    {
+      "nome": "Mobuss",
+      "link": "https://www.mobussconstrucao.com.br"
+    },
+    {
+      "nome": "ADM Sistemas",
+      "link": "https://web.adminfo.com.br"
+    },
+    {
+      "nome": "Radek",
+      "link": "https://radek.com.br/"
+    },
+    {
+      "nome": "NDD",
+      "link": "https://ndd.tech/"
+    },
+    {
+      "nome": "hartsystem",
+      "link": "https://www.hartsystem.com.br/"
     },
     {
       "nome": "LoQQuei by AMB é a nova patrocinadora do Jovem Programador",
@@ -187,6 +187,16 @@
     {
       "nome": "Talks com Patrocinadores conectam alunos do Jovem Programador com o mercado de tecnologia em SC",
       "link": "n.php?ID=136&T=talks-com-patrocinadores-conectam-alunos-do-jovem-programador-com-o-mercado-de-tecnologia-em-sc"
+    }
+  ],
+  "parceiros": [
+    {
+      "nome": "SENAC PARCEIRO DE ENSINO",
+      "link": "https://portal.sc.senac.br/"
+    },
+    {
+      "nome": "Seprosc - PARCEIRO INCIADOR/ORGANIZADOR",
+      "link": "http://www.seprosc.com.br"
     }
   ]
 }
