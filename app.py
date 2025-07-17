@@ -72,7 +72,7 @@ def main_terminal():
 
             # Gera e imprime a resposta do bot
             bot_response = chatbot_terminal.gerar_resposta(user_message)
-            print(f"🤖 Bot: {bot_response}")
+            print(f"🤖 Léo: {bot_response}")
 
         except KeyboardInterrupt:  # Permite sair com Ctrl+C
             print("\n🤖 Encerrando sessão de teste. Até logo!")
