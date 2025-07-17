@@ -138,6 +138,14 @@ class Chatbot:
                 "Os parceiros do programa são: " + ", ".join(lista_nomes) + "."
             )
 
+            # Formata a seção 'Links de Acesso' (NOVO)
+        acesso_info = self.dados.get("links_acesso", {})
+        acesso_texto = "Não encontrei os links para as áreas de acesso."
+        if acesso_info:
+            link_aluno = acesso_info.get("aluno", "Link não disponível")
+            link_empresa = acesso_info.get("empresa", "Link não disponível")
+            acesso_texto = f"Existem portais de acesso específicos. O link para a Área do Aluno é: {link_aluno}. O link para a Área da Empresa é: {link_empresa}."
+
         # A montagem do contexto final
         contexto = f"""
         Você é um assistente virtual chamado "leo" ou "leozin" especialista no programa Jovem Programador.
@@ -179,6 +187,9 @@ class Chatbot:
         
         PARCEIROS:
         {parceiros_texto}
+        
+        PORTAIS DE ACESSO:
+        {acesso_texto}
 
         --- REGRAS DE COMPORTAMENTO ---
         1. Se a pergunta do usuário não tiver relação com o programa Jovem Programador, recuse educadamente. Diga algo como: "Minha especialidade é apenas o programa Jovem Programador. Posso ajudar com algo sobre isso? 😉"

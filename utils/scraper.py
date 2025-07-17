@@ -501,6 +501,61 @@ def raspar_parceiros():
         return {"parceiros": []}
 
 
+# raspagem links de acesso
+
+
+def raspar_links_acesso():
+    """
+    Raspa os links de acesso para Aluno e Empresa procurando em toda a página,
+    para evitar problemas com menus de JavaScript.
+    """
+    print("🔑 Raspando links de acesso...")
+    try:
+        # Usando a página inicial, pois o menu de acesso está em todas.
+        url = "https://www.jovemprogramador.com.br/"
+        headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'}
+        response = requests.get(url, headers=headers, timeout=15)
+        response.raise_for_status()
+
+        soup = BeautifulSoup(response.text, 'html.parser')
+        
+        links_acesso = {}
+        
+        # --- ESTRATÉGIA CORRIGIDA ---
+        # Em vez de procurar um container específico, procuramos por TODOS os
+        # links da página e filtramos pelo texto exato.
+        todos_os_links = soup.find_all('a')
+        
+        print(f"    - Verificando {len(todos_os_links)} links na página...")
+        
+        for link in todos_os_links:
+            # .strip() remove espaços em branco antes e depois do texto
+            texto_do_link = link.get_text(strip=True)
+            
+            if texto_do_link == "Área do Aluno":
+                href = link.get('href', '')
+                if href:
+                    print("    - Link 'Área do Aluno' encontrado!")
+                    links_acesso['aluno'] = href
+            
+            elif texto_do_link == "Área da Empresa":
+                href = link.get('href', '')
+                if href:
+                    print("    - Link 'Área da Empresa' encontrado!")
+                    links_acesso['empresa'] = href
+
+        if links_acesso:
+            print(f"✅ Encontrados {len(links_acesso)} links de acesso.")
+        else:
+            print("⚠️ Nenhum link de acesso ('Área do Aluno' ou 'Área da Empresa') foi encontrado no HTML da página.")
+            
+        return {"links_acesso": links_acesso}
+
+    except Exception as e:
+        print(f"❌ ERRO ao raspar links de acesso: {e}")
+        return {"links_acesso": {}}
+
+
 # dito isso, salvar tudo
 
 
@@ -510,13 +565,14 @@ def salvar_dados():
         "sobre": raspar_sobre()["sobre"],
         "duvidas": raspar_duvidas()["duvidas"],
         "cidades": raspar_cidades()["cidades"],
-        "noticias": raspar_noticias()["noticias"],
+        # "noticias": raspar_noticias()["noticias"],
         "ser_professor": raspar_ser_professor()["ser_professor"],
-        "hackathon": raspar_hackathon()["hackathon"],
+        # "hackathon": raspar_hackathon()["hackathon"],
         "redes_sociais": raspar_redes_sociais()["redes_sociais"],
         "apoiadores": raspar_apoiadores()["apoiadores"],
         "patrocinadores": raspar_patrocinadores()["patrocinadores"],
         "parceiros": raspar_parceiros()["parceiros"],
+        "links_acesso": raspar_links_acesso()["links_acesso"],
     }
 
     with open("dados.json", "w", encoding="utf-8") as f:
