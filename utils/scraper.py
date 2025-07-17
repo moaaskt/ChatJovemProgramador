@@ -4,6 +4,8 @@ import json
 import re
 
 
+#  raspagem do sobre 
+
 def raspar_sobre():
     try:
         url = "https://www.jovemprogramador.com.br/sobre.php"
@@ -34,6 +36,10 @@ def raspar_sobre():
         print(f"Erro ao raspar 'sobre': {e}")
         return {"sobre": "Erro ao carregar dados."}
 
+
+
+
+# raspagem de dúvidas frequentes
 
 def raspar_duvidas():
     try:
@@ -66,19 +72,23 @@ def raspar_duvidas():
         return {"duvidas": {}}
 
 
+
+
+
+# raspasgem de cidades
+
 def raspar_cidades():
     try:
         url = "https://www.jovemprogramador.com.br/sobre.php"
         response = requests.get(url)
         soup = BeautifulSoup(response.text, "html.parser")
 
-        # Encontra o parágrafo que começa com "Para a edição de"
         for p in soup.find_all("p"):
             if p.get_text(strip=True).startswith("Para a edição de"):
-                # O próximo elemento <p> contém as cidades
+    
                 cidades_paragraph = p.find_next_sibling("p")
                 if cidades_paragraph:
-                    # Extrai o texto dentro da tag <strong>
+                    
                     cidades = cidades_paragraph.find("strong").get_text(strip=True)
                     return {"cidades": cidades}
 
@@ -88,6 +98,9 @@ def raspar_cidades():
         print(f"Erro ao raspar cidades: {e}")
         return {"cidades": "Erro ao carregar lista de cidades."}
 
+
+
+# raspagem de notícias
 
 def raspar_noticias():
     """
@@ -128,9 +141,6 @@ def raspar_noticias():
                         
                         texto_completo = ""
                         if secao_artigo:
-                            # --- AQUI ESTÁ A MUDANÇA PRINCIPAL ---
-                            # Em vez de pegar só os <p>, pegamos TODO o texto da seção.
-                            # O separator='\n' garante quebras de linha entre os elementos.
                             texto_completo = secao_artigo.get_text(separator='\n', strip=True)
                         else:
                             texto_completo = "Não foi possível extrair o texto completo do artigo."
@@ -151,6 +161,8 @@ def raspar_noticias():
         return {"noticias": []}
 
 
+
+# raspagem de ser professor
 
 def raspar_ser_professor():
     """Raspa as informações da página 'Quero Ser Professor'."""
@@ -207,6 +219,9 @@ def raspar_ser_professor():
         return {"ser_professor": {}}
 
 
+
+# raspagem de hackathon
+
 def raspar_hackathon():
     """Raspa a descrição, vídeo e notícias relacionadas da página do Hackathon."""
     print("🏆 Raspando informações completas sobre o Hackathon...")
@@ -225,21 +240,21 @@ def raspar_hackathon():
 
         soup = BeautifulSoup(response.text, "html.parser")
 
-        # --- Parte 1: Extrair a descrição geral ---
+        # ---  Extrair a descrição geral ---
         descricao = ""
         container_desc = soup.find("div", id="fh5co-about")
         if container_desc:
             paragrafos = container_desc.find_all("p")
             descricao = "\n".join([p.get_text(strip=True) for p in paragrafos])
 
-        # --- Parte 2: Extrair o link do vídeo ---
+        # --- Extrair o link do vídeo ---
         link_video = ""
         if container_desc:
             iframe = container_desc.find("iframe")
             if iframe and "src" in iframe.attrs:
                 link_video = iframe["src"]
 
-        # --- Parte 3: Extrair as notícias do Hackathon (NOVO) ---
+        # ---  Extrair as notícias do Hackathon  ---
         print("    - Procurando notícias relacionadas ao Hackathon...")
         noticias_relacionadas = []
         # O seletor 'a' com a classe 'item-grid' parece ser o ideal
@@ -260,7 +275,7 @@ def raspar_hackathon():
 
         print(f"    - Encontradas {len(noticias_relacionadas)} notícias do Hackathon.")
 
-        # --- Parte 4: Montar o dicionário final ---
+        # ---  Montar o dicionário final ---
         dados_hackathon = {
             "descricao": descricao,
             "link_video": link_video,
@@ -273,7 +288,57 @@ def raspar_hackathon():
     except Exception as e:
         print(f"❌ ERRO INESPERADO ao raspar a página do Hackathon: {e}")
         return {"hackathon": {}}
+    
+    
+    
+    
+# raspagem de redes sociais
+    
+def raspar_redes_sociais():
+    """Raspa os links das redes sociais do cabeçalho do site."""
+    print("📱 Raspando links das redes sociais...")
+    try:
+        
+        url = "https://www.jovemprogramador.com.br/sobre.php"
+        headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'}
+        response = requests.get(url, headers=headers, timeout=15)
+        response.raise_for_status()
 
+        soup = BeautifulSoup(response.text, 'html.parser')
+        
+        redes = {}
+        # Encontramos o elemento <nav> que contém os links
+        nav_container = soup.find('nav', attrs={'role': 'navigation'})
+
+        if nav_container:
+            links = nav_container.find_all('a') # Pega todos os links dentro do <nav>
+            for link in links:
+                href = link.get('href', '')
+                # Verificamos se o link pertence a uma rede social conhecida
+                if 'facebook.com' in href:
+                    redes['Facebook'] = href
+                elif 'instagram.com' in href:
+                    redes['Instagram'] = href
+                elif 'linkedin.com' in href:
+                    redes['LinkedIn'] = href
+                elif 'tiktok.com' in href:
+                    redes['TikTok'] = href
+        
+        if redes:
+            print(f"✅ Encontradas {len(redes)} redes sociais.")
+        else:
+            print("⚠️ Nenhuma rede social encontrada.")
+            
+        return {"redes_sociais": redes}
+
+    except Exception as e:
+        print(f"❌ ERRO ao raspar redes sociais: {e}")
+        return {"redes_sociais": {}}
+
+
+
+
+# dito isso, salvar tudo 
 
 def salvar_dados():
     print("\n🚀 Iniciando raspagem completa do site...")
@@ -283,12 +348,15 @@ def salvar_dados():
         "cidades": raspar_cidades()["cidades"],
         "noticias": raspar_noticias()["noticias"],
         "ser_professor": raspar_ser_professor()["ser_professor"],
-        "hackathon": raspar_hackathon()["hackathon"]  # <-- ESTA É A LINHA QUE PRECISA ESTAR LÁ
+        "hackathon": raspar_hackathon()["hackathon"],
+        "redes_sociais": raspar_redes_sociais()["redes_sociais"]  # <-- NOVA LINHA
     }
     
     with open('dados.json', 'w', encoding='utf-8') as f:
         json.dump(dados, f, ensure_ascii=False, indent=2)
     print("\n✅ Dados atualizados e salvos com sucesso em 'dados.json'")
+
+
 
 
 if __name__ == "__main__":

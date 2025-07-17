@@ -68,22 +68,39 @@ class Chatbot:
         hackathon_texto = "Informação sobre o Hackathon não foi encontrada."
         if hackathon_info:
             partes_texto = []
-            descricao = hackathon_info.get('descricao', '')
-            video = hackathon_info.get('link_video', '')
+            descricao = hackathon_info.get("descricao", "")
+            video = hackathon_info.get("link_video", "")
             noticias_hackathon = hackathon_info.get("noticias", [])
             if descricao:
                 partes_texto.append(descricao)
             if video:
-                partes_texto.append(f"Para saber mais, assista ao vídeo principal: {video}")
+                partes_texto.append(
+                    f"Para saber mais, assista ao vídeo principal: {video}"
+                )
             if noticias_hackathon:
                 partes_texto.append("\nÚLTIMAS NOTÍCIAS SOBRE O HACKATHON:")
-                noticias_formatadas = "".join([
-                    f"- Título: {n.get('titulo')}\n  Resumo: {n.get('resumo')}\n  Leia mais em: {n.get('link')}\n" 
-                    for n in noticias_hackathon
-                ])
+                noticias_formatadas = "".join(
+                    [
+                        f"- Título: {n.get('titulo')}\n  Resumo: {n.get('resumo')}\n  Leia mais em: {n.get('link')}\n"
+                        for n in noticias_hackathon
+                    ]
+                )
                 partes_texto.append(noticias_formatadas)
             if partes_texto:
                 hackathon_texto = "\n\n".join(partes_texto)
+
+        # Formata a seção 'Redes Sociais'
+        redes_info = self.dados.get("redes_sociais", {})
+        redes_texto = (
+            "Não encontrei informações sobre as redes sociais oficiais do programa."
+        )
+        if redes_info:
+            # Cria uma lista formatada: "- Facebook: https://..."
+            lista_redes = [f"- {nome}: {url}" for nome, url in redes_info.items()]
+            redes_texto = (
+                "Você pode encontrar e seguir o Jovem Programador nas seguintes redes sociais:\n"
+                + "\n".join(lista_redes)
+            )
 
         # A montagem do contexto final agora inclui a instrução sobre o Blog
         contexto = f"""
@@ -114,6 +131,9 @@ class Chatbot:
         
         SOBRE O HACKATHON:
         {hackathon_texto}
+        
+        REDES SOCIAIS:
+        {redes_texto}
 
         --- REGRAS DE COMPORTAMENTO ---
         1. Se a pergunta do usuário não tiver relação com o programa Jovem Programador, recuse educadamente. Diga algo como: "Minha especialidade é apenas o programa Jovem Programador. Posso ajudar com algo sobre isso? 😉"
