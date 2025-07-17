@@ -95,7 +95,7 @@ def raspar_cidades():
         return {"cidades": "Erro ao carregar lista de cidades."}
 
 
-# raspagem de notícias
+# raspagem de notícias (Explicar)
 
 
 def raspar_noticias():
@@ -107,6 +107,7 @@ def raspar_noticias():
         "📰 Iniciando raspagem profunda de TODAS as notícias (isso pode levar alguns minutos)..."
     )
     try:
+        # 1. Visita a página que contém a lista de todas as notícias
         url_lista = "https://www.jovemprogramador.com.br/noticias.php"
         headers = {
             "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"
@@ -119,13 +120,16 @@ def raspar_noticias():
             )
             return {"noticias": []}
 
+        # 2. Analisa o HTML e encontra todos os "cards" de resumo das notícias
         soup_lista = BeautifulSoup(response_lista.text, "html.parser")
         noticias_completas = []
-
         cards_containers = soup_lista.find_all("div", class_="col-md-4")
+
+        # 3. Ela conta quantos artigos encontrou para saber o tamanho da missão
         total_noticias = len(cards_containers)
         print(f"Encontrados {total_noticias} artigos para extrair.")
 
+        # 4. Para cada card de notícia, o código extrai o título e o link para a página completa
         for i, container in enumerate(cards_containers):
             titulo_tag = container.find("h3", class_="title")
             link_tag = container.find("a")
@@ -139,12 +143,18 @@ def raspar_noticias():
                 print(
                     f"    -> Raspando conteúdo do artigo {i+1}/{total_noticias}: {titulo}"
                 )
+
+                # 5. O "Pulo do Gato": O scraper visita o link individual do artigo
                 try:
                     response_artigo = requests.get(link_absoluto, headers=headers)
                     if response_artigo.status_code == 200:
                         soup_artigo = BeautifulSoup(response_artigo.text, "html.parser")
+
+                        # 6. Já na página do artigo, ele procura pela seção de conteúdo principal
                         secao_artigo = soup_artigo.find("div", id="fh5co-blog-section")
 
+                        # 7. Extrai TODO o texto dessa seção, limpando espaços extras
+                        #    e juntando tudo em uma string.
                         texto_completo = ""
                         if secao_artigo:
                             texto_completo = secao_artigo.get_text(
@@ -155,6 +165,8 @@ def raspar_noticias():
                                 "Não foi possível extrair o texto completo do artigo."
                             )
 
+                        # 8. Adiciona o título, link e texto completo à lista de notícias
+                        #    para que possamos usar depois. ele armazena tudo de forma organizada.
                         noticias_completas.append(
                             {
                                 "titulo": titulo,
@@ -163,6 +175,9 @@ def raspar_noticias():
                             }
                         )
                 except Exception as e_artigo:
+
+                    # 9. Se der algum erro ao acessar o artigo, ele registra o erro
+                    #    e continua com o próximo artigo, sem travar o programa.
                     print(
                         f"      - ERRO ao processar o artigo {link_absoluto}: {e_artigo}"
                     )
@@ -513,42 +528,46 @@ def raspar_links_acesso():
     try:
         # Usando a página inicial, pois o menu de acesso está em todas.
         url = "https://www.jovemprogramador.com.br/"
-        headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'}
+        headers = {
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"
+        }
         response = requests.get(url, headers=headers, timeout=15)
         response.raise_for_status()
 
-        soup = BeautifulSoup(response.text, 'html.parser')
-        
+        soup = BeautifulSoup(response.text, "html.parser")
+
         links_acesso = {}
-        
+
         # --- ESTRATÉGIA CORRIGIDA ---
         # Em vez de procurar um container específico, procuramos por TODOS os
         # links da página e filtramos pelo texto exato.
-        todos_os_links = soup.find_all('a')
-        
+        todos_os_links = soup.find_all("a")
+
         print(f"    - Verificando {len(todos_os_links)} links na página...")
-        
+
         for link in todos_os_links:
             # .strip() remove espaços em branco antes e depois do texto
             texto_do_link = link.get_text(strip=True)
-            
+
             if texto_do_link == "Área do Aluno":
-                href = link.get('href', '')
+                href = link.get("href", "")
                 if href:
                     print("    - Link 'Área do Aluno' encontrado!")
-                    links_acesso['aluno'] = href
-            
+                    links_acesso["aluno"] = href
+
             elif texto_do_link == "Área da Empresa":
-                href = link.get('href', '')
+                href = link.get("href", "")
                 if href:
                     print("    - Link 'Área da Empresa' encontrado!")
-                    links_acesso['empresa'] = href
+                    links_acesso["empresa"] = href
 
         if links_acesso:
             print(f"✅ Encontrados {len(links_acesso)} links de acesso.")
         else:
-            print("⚠️ Nenhum link de acesso ('Área do Aluno' ou 'Área da Empresa') foi encontrado no HTML da página.")
-            
+            print(
+                "⚠️ Nenhum link de acesso ('Área do Aluno' ou 'Área da Empresa') foi encontrado no HTML da página."
+            )
+
         return {"links_acesso": links_acesso}
 
     except Exception as e:
