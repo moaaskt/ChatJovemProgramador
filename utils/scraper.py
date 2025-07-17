@@ -4,8 +4,7 @@ import json
 import re
 
 
-#  raspagem do sobre 
-
+#  raspagem do sobre
 def raspar_sobre():
     try:
         url = "https://www.jovemprogramador.com.br/sobre.php"
@@ -35,8 +34,6 @@ def raspar_sobre():
     except Exception as e:
         print(f"Erro ao raspar 'sobre': {e}")
         return {"sobre": "Erro ao carregar dados."}
-
-
 
 
 # raspagem de dúvidas frequentes
@@ -73,8 +70,6 @@ def raspar_duvidas():
 
 
 
-
-
 # raspasgem de cidades
 
 def raspar_cidades():
@@ -85,10 +80,10 @@ def raspar_cidades():
 
         for p in soup.find_all("p"):
             if p.get_text(strip=True).startswith("Para a edição de"):
-    
+
                 cidades_paragraph = p.find_next_sibling("p")
                 if cidades_paragraph:
-                    
+
                     cidades = cidades_paragraph.find("strong").get_text(strip=True)
                     return {"cidades": cidades}
 
@@ -100,6 +95,7 @@ def raspar_cidades():
 
 
 
+
 # raspagem de notícias
 
 def raspar_noticias():
@@ -107,58 +103,79 @@ def raspar_noticias():
     Raspa a lista de notícias e, em seguida, visita cada link para
     extrair TODO o texto de cada artigo.
     """
-    print("📰 Iniciando raspagem profunda de TODAS as notícias (isso pode levar alguns minutos)...")
+    print(
+        "📰 Iniciando raspagem profunda de TODAS as notícias (isso pode levar alguns minutos)..."
+    )
     try:
         url_lista = "https://www.jovemprogramador.com.br/noticias.php"
-        headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'}
+        headers = {
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"
+        }
         response_lista = requests.get(url_lista, headers=headers)
-        
+
         if response_lista.status_code != 200:
-            print(f"❌ ERRO: Falha ao acessar a lista de notícias. Código: {response_lista.status_code}")
+            print(
+                f"❌ ERRO: Falha ao acessar a lista de notícias. Código: {response_lista.status_code}"
+            )
             return {"noticias": []}
 
-        soup_lista = BeautifulSoup(response_lista.text, 'html.parser')
+        soup_lista = BeautifulSoup(response_lista.text, "html.parser")
         noticias_completas = []
-        
-        cards_containers = soup_lista.find_all('div', class_='col-md-4')
+
+        cards_containers = soup_lista.find_all("div", class_="col-md-4")
         total_noticias = len(cards_containers)
         print(f"Encontrados {total_noticias} artigos para extrair.")
 
         for i, container in enumerate(cards_containers):
-            titulo_tag = container.find('h3', class_='title')
-            link_tag = container.find('a')
+            titulo_tag = container.find("h3", class_="title")
+            link_tag = container.find("a")
 
-            if titulo_tag and link_tag and 'href' in link_tag.attrs:
+            if titulo_tag and link_tag and "href" in link_tag.attrs:
                 titulo = titulo_tag.get_text(strip=True)
-                link_absoluto = f"https://www.jovemprogramador.com.br/{link_tag['href']}"
-                
-                print(f"    -> Raspando conteúdo do artigo {i+1}/{total_noticias}: {titulo}")
+                link_absoluto = (
+                    f"https://www.jovemprogramador.com.br/{link_tag['href']}"
+                )
+
+                print(
+                    f"    -> Raspando conteúdo do artigo {i+1}/{total_noticias}: {titulo}"
+                )
                 try:
                     response_artigo = requests.get(link_absoluto, headers=headers)
                     if response_artigo.status_code == 200:
-                        soup_artigo = BeautifulSoup(response_artigo.text, 'html.parser')
-                        secao_artigo = soup_artigo.find('div', id='fh5co-blog-section')
-                        
+                        soup_artigo = BeautifulSoup(response_artigo.text, "html.parser")
+                        secao_artigo = soup_artigo.find("div", id="fh5co-blog-section")
+
                         texto_completo = ""
                         if secao_artigo:
-                            texto_completo = secao_artigo.get_text(separator='\n', strip=True)
+                            texto_completo = secao_artigo.get_text(
+                                separator="\n", strip=True
+                            )
                         else:
-                            texto_completo = "Não foi possível extrair o texto completo do artigo."
-                            
-                        noticias_completas.append({
-                            "titulo": titulo,
-                            "link": link_absoluto,
-                            "texto_completo": texto_completo
-                        })
+                            texto_completo = (
+                                "Não foi possível extrair o texto completo do artigo."
+                            )
+
+                        noticias_completas.append(
+                            {
+                                "titulo": titulo,
+                                "link": link_absoluto,
+                                "texto_completo": texto_completo,
+                            }
+                        )
                 except Exception as e_artigo:
-                    print(f"      - ERRO ao processar o artigo {link_absoluto}: {e_artigo}")
-        
-        print(f"✅ SUCESSO! Conteúdo completo de {len(noticias_completas)} notícias extraído.")
+                    print(
+                        f"      - ERRO ao processar o artigo {link_absoluto}: {e_artigo}"
+                    )
+
+        print(
+            f"✅ SUCESSO! Conteúdo completo de {len(noticias_completas)} notícias extraído."
+        )
         return {"noticias": noticias_completas}
-        
+
     except Exception as e:
         print(f"❌ ERRO INESPERADO na função raspar_noticias: {e}")
         return {"noticias": []}
+
 
 
 
@@ -217,6 +234,7 @@ def raspar_ser_professor():
     except Exception as e:
         print(f"❌ ERRO INESPERADO ao raspar 'Quero Ser Professor': {e}")
         return {"ser_professor": {}}
+
 
 
 
@@ -288,47 +306,49 @@ def raspar_hackathon():
     except Exception as e:
         print(f"❌ ERRO INESPERADO ao raspar a página do Hackathon: {e}")
         return {"hackathon": {}}
-    
-    
-    
-    
+
+
+
+
 # raspagem de redes sociais
-    
+
 def raspar_redes_sociais():
     """Raspa os links das redes sociais do cabeçalho do site."""
     print("📱 Raspando links das redes sociais...")
     try:
-        
+
         url = "https://www.jovemprogramador.com.br/sobre.php"
-        headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'}
+        headers = {
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"
+        }
         response = requests.get(url, headers=headers, timeout=15)
         response.raise_for_status()
 
-        soup = BeautifulSoup(response.text, 'html.parser')
-        
+        soup = BeautifulSoup(response.text, "html.parser")
+
         redes = {}
         # Encontramos o elemento <nav> que contém os links
-        nav_container = soup.find('nav', attrs={'role': 'navigation'})
+        nav_container = soup.find("nav", attrs={"role": "navigation"})
 
         if nav_container:
-            links = nav_container.find_all('a') # Pega todos os links dentro do <nav>
+            links = nav_container.find_all("a")  # Pega todos os links dentro do <nav>
             for link in links:
-                href = link.get('href', '')
+                href = link.get("href", "")
                 # Verificamos se o link pertence a uma rede social conhecida
-                if 'facebook.com' in href:
-                    redes['Facebook'] = href
-                elif 'instagram.com' in href:
-                    redes['Instagram'] = href
-                elif 'linkedin.com' in href:
-                    redes['LinkedIn'] = href
-                elif 'tiktok.com' in href:
-                    redes['TikTok'] = href
-        
+                if "facebook.com" in href:
+                    redes["Facebook"] = href
+                elif "instagram.com" in href:
+                    redes["Instagram"] = href
+                elif "linkedin.com" in href:
+                    redes["LinkedIn"] = href
+                elif "tiktok.com" in href:
+                    redes["TikTok"] = href
+
         if redes:
             print(f"✅ Encontradas {len(redes)} redes sociais.")
         else:
             print("⚠️ Nenhuma rede social encontrada.")
-            
+
         return {"redes_sociais": redes}
 
     except Exception as e:
@@ -338,7 +358,98 @@ def raspar_redes_sociais():
 
 
 
-# dito isso, salvar tudo 
+# raspagem dos apoiadores
+
+def raspar_apoiadores():
+    """Raspa a lista de empresas apoiadoras do programa."""
+    print("🤝 Raspando lista de Apoiadores...")
+    try:
+        url = "https://www.jovemprogramador.com.br/apoiadores.php"
+        headers = {
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"
+        }
+        response = requests.get(url, headers=headers, timeout=15)
+        response.raise_for_status()
+
+        soup = BeautifulSoup(response.text, "html.parser")
+
+        apoiadores = []
+        # O seletor 'a' com a classe 'item-grid' parece ser o ideal para cada apoiador
+        cards_apoiadores = soup.find_all("a", class_="item-grid")
+
+        for card in cards_apoiadores:
+            link = card.get("href", "")
+            img_tag = card.find("img")
+
+            # O nome da empresa está no atributo 'alt' da imagem
+            nome = (
+                img_tag.get("alt", "Nome não encontrado")
+                if img_tag
+                else "Nome não encontrado"
+            )
+
+            # Adicionamos apenas se tivermos um nome e um link
+            if nome != "Nome não encontrado" and link:
+                apoiadores.append({"nome": nome, "link": link})
+
+        if apoiadores:
+            print(f"✅ Encontrados {len(apoiadores)} apoiadores.")
+        else:
+            print("⚠️ Nenhum apoiador encontrado.")
+
+        return {"apoiadores": apoiadores}
+
+    except Exception as e:
+        print(f"❌ ERRO ao raspar Apoiadores: {e}")
+        return {"apoiadores": []}
+
+
+
+
+
+# raspagem dos patriconadores 
+
+def raspar_patrocinadores():
+    """Raspa a lista de empresas patrocinadoras do programa."""
+    print("💰 Raspando lista de Patrocinadores...")
+    try:
+        url = "https://www.jovemprogramador.com.br/patrocinadores.php"
+        headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'}
+        response = requests.get(url, headers=headers, timeout=15)
+        response.raise_for_status()
+
+        soup = BeautifulSoup(response.text, 'html.parser')
+        
+        patrocinadores = []
+        # A estrutura e classes são as mesmas, o que é ótimo!
+        cards_patrocinadores = soup.find_all('a', class_='item-grid')
+
+        for card in cards_patrocinadores:
+            link = card.get('href', '')
+            img_tag = card.find('img')
+            
+            nome = img_tag.get('alt', 'Nome não encontrado') if img_tag else 'Nome não encontrado'
+            
+            if nome != 'Nome não encontrado' and link:
+                patrocinadores.append({"nome": nome, "link": link})
+        
+        if patrocinadores:
+            print(f"✅ Encontrados {len(patrocinadores)} patrocinadores.")
+        else:
+            print("⚠️ Nenhum patrocinador encontrado.")
+            
+        return {"patrocinadores": patrocinadores}
+
+    except Exception as e:
+        print(f"❌ ERRO ao raspar Patrocinadores: {e}")
+        return {"patrocinadores": []}
+
+
+
+
+
+
+# dito isso, salvar tudo
 
 def salvar_dados():
     print("\n🚀 Iniciando raspagem completa do site...")
@@ -349,14 +460,14 @@ def salvar_dados():
         "noticias": raspar_noticias()["noticias"],
         "ser_professor": raspar_ser_professor()["ser_professor"],
         "hackathon": raspar_hackathon()["hackathon"],
-        "redes_sociais": raspar_redes_sociais()["redes_sociais"]  # <-- NOVA LINHA
+        "redes_sociais": raspar_redes_sociais()["redes_sociais"],
+        "apoiadores": raspar_apoiadores()["apoiadores"],
+         "patrocinadores": raspar_patrocinadores()["patrocinadores"]  
     }
-    
-    with open('dados.json', 'w', encoding='utf-8') as f:
+
+    with open("dados.json", "w", encoding="utf-8") as f:
         json.dump(dados, f, ensure_ascii=False, indent=2)
     print("\n✅ Dados atualizados e salvos com sucesso em 'dados.json'")
-
-
 
 
 if __name__ == "__main__":

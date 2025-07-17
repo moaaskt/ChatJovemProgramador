@@ -33,7 +33,8 @@ class Chatbot:
         print("✅ Chatbot pronto e online!")
 
     def _criar_contexto(self):
-        # A formatação de todas as suas seções existentes permanece a mesma...
+
+        # A formatação de todas as suas seções existentes
         duvidas_texto = "".join(
             [
                 f"• {pergunta}: {resposta}\n"
@@ -41,6 +42,7 @@ class Chatbot:
             ]
         )
 
+        # Formata a seção 'notícias'
         todas_as_noticias = self.dados.get("noticias", [])
         noticias_para_contexto = todas_as_noticias[:5]
 
@@ -53,6 +55,7 @@ class Chatbot:
                 ]
             )
 
+        # Formata a seção 'Como ser professor'
         prof_info = self.dados.get("ser_professor", {})
         prof_texto = "Informação sobre como se tornar professor não foi encontrada."
         if prof_info and prof_info.get("vagas_abertas"):
@@ -64,6 +67,7 @@ class Chatbot:
                 f"2. Para Registrar Interesse: {interesse.get('texto', '')} A página para isso é: {interesse.get('link_pagina', '')}"
             )
 
+        # Formata a seção 'Hackathon'
         hackathon_info = self.dados.get("hackathon", {})
         hackathon_texto = "Informação sobre o Hackathon não foi encontrada."
         if hackathon_info:
@@ -102,7 +106,30 @@ class Chatbot:
                 + "\n".join(lista_redes)
             )
 
-        # A montagem do contexto final agora inclui a instrução sobre o Blog
+        # Formata a seção 'Apoiadores'
+        apoiadores_info = self.dados.get("apoiadores", [])
+        apoiadores_texto = "Não encontrei a lista de empresas apoiadoras."
+        if apoiadores_info:
+            # Pega apenas o nome de cada apoiador e junta com vírgulas
+            lista_nomes = [apoiador.get("nome", "") for apoiador in apoiadores_info]
+            apoiadores_texto = (
+                "O programa conta com o apoio de diversas empresas importantes, como: "
+                + ", ".join(lista_nomes)
+                + "."
+            )
+
+        # Formata a seção 'Patrocinadores'
+        patrocinadores_info = self.dados.get("patrocinadores", [])
+        patrocinadores_texto = "Não encontrei a lista de empresas patrocinadoras."
+        if patrocinadores_info:
+            lista_nomes = [p.get("nome", "") for p in patrocinadores_info]
+            patrocinadores_texto = (
+                "O programa é patrocinado por grandes empresas de tecnologia, como: "
+                + ", ".join(lista_nomes)
+                + "."
+            )
+
+        # A montagem do contexto final
         contexto = f"""
         Você é um assistente virtual chamado "leo" ou "leozin" especialista no programa Jovem Programador.
         Sua única e exclusiva função é responder perguntas sobre este programa.
@@ -134,6 +161,13 @@ class Chatbot:
         
         REDES SOCIAIS:
         {redes_texto}
+        
+        APOIADORES:
+        {apoiadores_texto}
+        
+        PATROCINADORES:
+        {patrocinadores_texto}
+        
 
         --- REGRAS DE COMPORTAMENTO ---
         1. Se a pergunta do usuário não tiver relação com o programa Jovem Programador, recuse educadamente. Diga algo como: "Minha especialidade é apenas o programa Jovem Programador. Posso ajudar com algo sobre isso? 😉"
