@@ -34,7 +34,7 @@ class Chatbot:
         
         # 4. Inicializa o modelo de IA e a sessão de chat
         # ATENÇÃO: Verifique o nome do modelo. O correto geralmente é 'gemini-1.5-flash'.
-        self.model = genai.GenerativeModel("gemini-1.5-flash") 
+        self.model = genai.GenerativeModel("gemini-2.0-flash") 
         self.chat_session = self.model.start_chat(history=[])
         
         # 5. Envia o contexto inicial para a IA para "doutriná-la" sobre como se comportar
